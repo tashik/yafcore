@@ -1,8 +1,8 @@
 <?php
 /**
  * @name SampleModel
- * @desc sample数据获取类, 可以访问数据库，文件，其它系统等
- * @author patris
+ * @desc sample data class can access databases, files, and other system
+ * @author tashik
  */
 class SampleModel {
     public function __construct() {

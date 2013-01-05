@@ -1,9 +1,9 @@
 <?php
 /**
  * @name SamplePlugin
- * @desc Yaf定义了如下的6个Hook,插件之间的执行顺序是先进先Call
+ * @desc Yaf defined 6 Hooks, the execution order is preserved in the notation below
  * @see http://www.php.net/manual/en/class.yaf-plugin-abstract.php
- * @author patris
+ * @author tashik
  */
 class SamplePlugin extends Yaf_Plugin_Abstract {
 

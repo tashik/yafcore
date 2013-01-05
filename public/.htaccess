@@ -1,0 +1,45 @@
+#RewriteEngine On
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule .* index.php
+RewriteEngine On
+#SetEnv APPLICATION_ENV "development"
+#SetEnv APPLICATION_ENV "production"
+SetEnvIfNoCase Host . APPLICATION_ENV=development
+SetEnvIfNoCase Host debug\. APPLICATION_ENV=development
+SetEnvIfNoCase APPLICATION_ENV development DEBUG
+
+AddDefaultCharset utf-8
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^min/js/(.*)$ minjs.php?src=$1 [NC,L]
+RewriteRule ^get/photo/(.*)$ get.php?params=$1 [NC,E=no-gzip,L]
+
+RewriteRule ^resources/ - [NC,L]
+RewriteRule ^css/ - [NC,L]
+RewriteRule ^js/ - [NC,L]
+RewriteRule ^app/ - [NC,L]
+RewriteRule ^util/ - [NC,L]
+RewriteRule ^extjs/ - [NC,L]
+RewriteRule ^images/ - [NC,L]
+RewriteRule ^themes/ - [NC,L]
+RewriteRule ^ico/ - [NC,L]
+
+RewriteRule ^.*$ index.php [NC,L]
+
+LimitRequestBody 0
+
+<IfModule mod_php5.c>
+  php_value error_log "../logs/php_error.log"
+  php_value upload_max_filesize "64M"
+  php_value post_max_size "65M"
+  php_value max_execution_time "600"
+  php_value memory_limit "256M"
+  php_value error_reporting "6135"
+  php_flag magic_quotes_gpc "off"
+  #php_flag xdebug.profiler_enable "on"
+</IfModule>
+

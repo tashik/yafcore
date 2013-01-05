@@ -1,8 +1,8 @@
 <?php
 
-define('APPLICATION_PATH', dirname(__FILE__));
+define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../'));
 
-$application = new Yaf_Application( APPLICATION_PATH . "/conf/application.ini");
+$application = new Yaf_Application( APPLICATION_PATH . "/application/conf/application.ini");
 
 $application->bootstrap()->run();
 ?>
