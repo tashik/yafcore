@@ -11,8 +11,8 @@ class Bootstrap extends My_Bootstrap_Abstract{
 
     public function _initConfig() {
 		//Configuration load
-		$arrConfig = Yaf_Application::app()->getConfig();
-		Yaf_Registry::set('config', $arrConfig);
+		$arrConfig = My_Application::app()->getConfig();
+		My_Registry::set('config', $arrConfig);
 	}
 
 	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
