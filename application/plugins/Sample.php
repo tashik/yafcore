@@ -7,21 +7,21 @@
  */
 class SamplePlugin extends My_Plugin_Abstract {
 
-	public function routerStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+	public function routerStartup(My_Request_Abstract $request, My_Response_Abstract $response) {
 	}
 
-	public function routerShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+	public function routerShutdown(My_Request_Abstract $request, My_Response_Abstract $response) {
 	}
 
-	public function dispatchLoopStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+	public function dispatchLoopStartup(My_Request_Abstract $request, My_Response_Abstract $response) {
 	}
 
-	public function preDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+	public function preDispatch(My_Request_Abstract $request, My_Response_Abstract $response) {
 	}
 
-	public function postDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+	public function postDispatch(My_Request_Abstract $request, My_Response_Abstract $response) {
 	}
 
-	public function dispatchLoopShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+	public function dispatchLoopShutdown(My_Request_Abstract $request, My_Response_Abstract $response) {
 	}
 }
