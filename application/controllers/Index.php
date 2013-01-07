@@ -5,9 +5,9 @@
  * @desc Default Controller
  * @see http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
-class IndexController extends Yaf_Controller_Abstract {
+class IndexController extends My_Controller_Abstract {
 
-	/** 
+	/**
      * Default Action
      * Yaf supports directly Yaf_Request_Abstract::getParam() get the parameter with the same name  as Action parameters
      * For the following example, when accessing http://yourhost/sample/index/index/index/name/patris you will get the different name param

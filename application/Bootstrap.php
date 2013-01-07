@@ -7,7 +7,7 @@
  * These methods accept a parameter: Yaf_Dispatcher $dispatcher
  * Calling the order and affirm the order
  */
-class Bootstrap extends Yaf_Bootstrap_Abstract{
+class Bootstrap extends My_Bootstrap_Abstract{
 
     public function _initConfig() {
 		//Configuration load
@@ -24,7 +24,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
 	public function _initRoute(Yaf_Dispatcher $dispatcher) {
 		//Register own routing protocol used by default simple routing
 	}
-	
+
 	public function _initView(Yaf_Dispatcher $dispatcher){
 		//register own template engine, for example smarty,firekylin
 	}
