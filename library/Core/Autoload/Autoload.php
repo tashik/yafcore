@@ -26,7 +26,7 @@ class My_NameScheme_Autoload {
             fclose($f);
             //if (0===strpos($classname, 'Zend_')) {
               $include_fname = $fname;
-              $fname = APPLICATION_PATH.'/../cache/autoload_'.$classname.'.php';
+              $fname = APPLICATION_PATH.'/cache/autoload_'.$classname.'.php';
               if (!file_exists($fname)) {
                 $f = @fopen($include_fname, "r", true);
                 $fstat = fstat($f);
