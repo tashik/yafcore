@@ -1,8 +1,6 @@
 <?php
 //This is an API DOC for IDE like PHPStorm for code completion
-require_once ('YafAPI.php');
-
-
+//require_once ('YafAPI.php');
 
 
 class Extended_Application extends Yaf_Application {}
@@ -12,7 +10,7 @@ class Extended_Plugin_Abstract extends Yaf_Plugin_Abstract {}
 
 $autoLoader = Yaf_Loader::getInstance();
 $autoLoader->registerLocalNamespace('Yaf');
-class Extended_Controller_Action extends Yaf_Controller_Action {}
+class Extended_Controller_Action extends Yaf_Controller_Abstract {}
 
 
 
