@@ -11,6 +11,7 @@ class Core_PageCache {
   );
 
   static public function display($uri) {
+    return;
     $ttl = isset(self::$cacheable_uris[$uri])?self::$cacheable_uris[$uri]:null;
     if (!$ttl) {
       return;
@@ -26,6 +27,7 @@ class Core_PageCache {
   }
 
   static public function save($uri, $data=null, $headers = null, $response_code = null) {
+    return;
     $ttl = isset(self::$cacheable_uris[$uri])?self::$cacheable_uris[$uri]:null;
     if (!$ttl) {
       return;
