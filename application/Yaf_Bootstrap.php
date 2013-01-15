@@ -11,7 +11,7 @@
 require_once 'Util/functions.php';
 require_once 'Core/Debug.php';
 
-class Yaf_Bootstrap extends Extended_Bootstrap_Abstract{
+class Bootstrap extends Extended_Bootstrap_Abstract{
   protected $_config ;
   protected $_main_module = '';
   protected $_cache;
