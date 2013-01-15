@@ -5,9 +5,14 @@ application.dispatcher.throwException = 1
 application.view.ext = "phtml"
 application.modules="Index,B2bedo,B2bnsi"
 application.bootstrap = APPLICATION_PATH "/application/Yaf_Bootstrap.php"
+application.library = APPLICATION_PATH "/library"
 application.baseUri=""
 
-;include(APPLICATION_PATH "application/conf/common.ini)
+;include(../common.ini)
+
+
+[development : common]
+
 
 [production : common]
 general.upload.av_scanner = "/usr/bin/clamdscan"
