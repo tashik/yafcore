@@ -1,0 +1,106 @@
+resources.log.stream.writerName = Stream
+resources.log.stream.writerParams.stream = APPLICATION_PATH "/../logs/php_error.log"
+
+resources.layout.layoutPath = APPLICATION_PATH "/layouts/scripts/"
+
+resources.session.saveHandler.class = Zend_Session_SaveHandler_DbTable
+resources.session.saveHandler.options.name = sessions
+resources.session.saveHandler.options.primary = session_id
+resources.session.saveHandler.options.primaryAssignment = sessionId
+resources.session.saveHandler.options.modifiedColumn = modified
+resources.session.saveHandler.options.dataColumn = session_data
+resources.session.saveHandler.options.lifetimeColumn = lifetime
+resources.session.remember_me_seconds = 86400
+resources.session.gc_maxlifetime = 86400
+resources.session.cookie_lifetime = 86400
+resources.session.use_only_cookies = on
+resources.session.name = b2bsid
+
+general.ext.direct.request.parameter = 'rpc'
+general.ext.direct.request.singleException= FALSE
+general.ext.direct.enableBuffer = true
+
+resources.db.adapter = PDO_PGSQL
+resources.db.params.host = localhost
+resources.db.params.username = b2b_general
+resources.db.params.password = flover
+resources.db.params.dbname = b2b_general
+
+resources.memcached.server.host = "localhost"
+
+resources.mongo.host = "localhost"
+resources.mongo.dbname = "b2b_lietenant"
+;resources.mongo.port = 27017
+;resources.mongo.params = 0
+
+general.cryptosecret = 'uJh285IkixpuQQuNZ4g6TYMkcHXHrurR'
+crypto.fake_crypt=1
+crypto.mode="none"
+;gost
+crypto.crypt_customer = false
+crypto.crypt_supplier = false
+crypto.crypt_operator = false
+; автоматически обновлять хеши паролей на криптостойкие (Внимание: нельзя включать в случае, если
+; используется логин по хешу по API: для такого логина необходимо сохранять хеши как есть)
+crypto.password.autoupgrade_weak=1
+; использовать криптостойкие хеши паролей по умолчанию (bcrypt, соль)
+crypto.password.use_strong=1
+; вычислительная сложность генерации криптостойких хешей
+crypto.password.strength=10
+
+general.mail.smtp_host=''
+general.mail.smtp_port=''
+general.mail.smtp_user=''
+general.mail.smtp_pass=''
+general.mail.sender=''
+general.mail.sender_name=''
+; general.mail.disable = true
+; general.mail.disabled_mail_log = true
+
+general.bankdata.account=40702810100760001504
+general.bankdata.kor_account=30101810500000000219
+general.bankdata.bik=044525219
+general.bankdata.inn=7707704692
+general.bankdata.kpp=770701001
+general.bankdata.bank="ОАО «Банк Москвы» г. Москва"
+general.bankdata.receiver="ОАО «Единая электронная торговая площадка»"
+general.bankdata.paydest="Перечисление денежных средств оператору электронной торговой площадки для проведения операций по организации процедур и обеспечению участия в них, лицевой счет № {account}."
+; Допустимый диапазон значений номеров исходящих платежных поручений
+;general.bankdata.number.min=1
+;general.bankdata.number.max=99999
+
+general.site_name='Система электронного документооборота'
+general.site_title=''
+general.site_url = "http://debug.docu.my:8888"
+general.site_copyright = "© ЕЭТП"
+general.ucode = "TESTCOM"
+general.etp_id = "11"
+general.edo_id = "11"
+; Наименование системы-оператора документооборота
+general.operator.name = "test"
+
+; ИНН системы-оператора документооборота
+general.operator.inn = "123"
+
+; Значение business_id для системы-оператора документооборота
+general.operator.id = 1
+
+; Код системы из справочника систем в references.php
+general.system_id = 1
+general.operator.user_id = 2
+
+;Страна по умолчанию, для комбы выбора стран
+general.default_country = 643
+
+announcement.file = APPLICATION_PATH "/data/announcement.txt"
+
+general.storage_path = APPLICATION_PATH "/data/storage/"
+
+general.upload.virus_check = 0
+
+general.upload.file_types = ".doc, .docx, .xls, .xlsx, .txt, .rtf, .zip, .rar, .7z, .jpg, .gif, .png, .pdf, .jpeg, .pdf, .gif"
+
+interface.linesPerPage = 50
+interface.ondemand_js = false
+interface.debug.level = 3
+general.upload.file_size = 20

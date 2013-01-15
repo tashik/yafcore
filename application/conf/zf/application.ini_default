@@ -1,0 +1,38 @@
+[common]
+phpSettings.display_startup_errors = 0
+phpSettings.display_errors = 0
+includePaths.library = APPLICATION_PATH "/library"
+bootstrap.path = APPLICATION_PATH "/application/ZF_Bootstrap.php"
+bootstrap.class = "ZF_Bootstrap"
+
+resources.frontController.moduleDirectory = APPLICATION_PATH "/modules"
+resources.modules[] = default
+resources.modules[] = B2bedo
+resources.modules[] = B2bnsi
+resources.frontController.params.displayExceptions = 0
+
+;include(APPLICATION_PATH "application/conf/common.ini)
+
+[production : common]
+general.upload.av_scanner = "/usr/bin/clamdscan"
+
+[staging : production]
+
+[testing : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+
+interface.debug.level = 9
+
+resources.frontController.params.displayExceptions = 1
+
+resources.log.firebug.writerName = Firebug
+
+resources.db.params.profiler.enabled = false
+resources.db.params.profiler.class = "Zend_Db_Profiler_Firebug"
+
+

@@ -1,0 +1,13 @@
+[common]
+application.directory = APPLICATION_PATH  "/application"
+application.dispatcher.catchException = 1
+application.dispatcher.throwException = 1
+application.view.ext = "phtml"
+application.modules="Index,B2bedo,B2bnsi"
+application.bootstrap = APPLICATION_PATH "/application/Yaf_Bootstrap.php"
+application.baseUri=""
+
+;include(APPLICATION_PATH "application/conf/common.ini)
+
+[production : common]
+general.upload.av_scanner = "/usr/bin/clamdscan"
