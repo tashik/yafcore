@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="api_resources">
+  <comment>Ресурсы API</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="module">
+      <type length="32">varchar</type>
+      <default>'default'::character varying</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="controller">
+      <type length="32">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="action">
+      <type length="64">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="descr">
+      <type length="255">varchar</type>
+    </column>
+    <column name="log">
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+  <indexes>
+    <index name="api_resources_idx_action">
+      <type>btree</type>
+      <expression>lower(action::text) varchar_ops</expression>
+    </index>
+    <index name="api_resources_idx_controller">
+      <type>btree</type>
+      <expression>lower(controller::text) varchar_ops</expression>
+    </index>
+    <index name="api_resources_idx_module">
+      <type>btree</type>
+      <expression>lower(module::text) varchar_ops</expression>
+    </index>
+  </indexes>
+</table>

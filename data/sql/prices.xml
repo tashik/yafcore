@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="prices">
+  <comment>Цены на товары и услуги</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="item_id">
+      <comment>ID товара или услуги</comment>
+      <type>integer</type>
+    </column>
+    <column name="is_service">
+      <comment>Флаг того, что цена относится к услуге</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="price">
+      <type length="14" precision="2">numeric</type>
+    </column>
+    <column name="price_amount">
+      <type length="14" precision="2">numeric</type>
+    </column>
+    <column name="price_retail">
+      <type length="14" precision="2">numeric</type>
+    </column>
+    <column name="vat_rate">
+      <type length="3" precision="1">numeric</type>
+    </column>
+    <column name="date_added">
+      <comment>Дата добавления</comment>
+      <type>timestamp</type>
+    </column>
+  </columns>
+</table>

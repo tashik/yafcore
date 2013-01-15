@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="gui_access_rights">
+  <comment>Права доступа к GUI</comment>
+  <columns>
+    <column name="gui_resource_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="gui_access_rights_gui_resource_id_fkey">
+        <table>gui_resources</table>
+        <column>id</column>
+        <on-delete>no action</on-delete>
+        <on-update>no action</on-update>
+      </references>
+    </column>
+    <column name="acl_role_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="gui_access_rights_acl_role_id_fkey">
+        <table>acl_roles</table>
+        <column>id</column>
+        <on-delete>no action</on-delete>
+        <on-update>no action</on-update>
+      </references>
+    </column>
+    <column name="mode">
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+  <indexes>
+    <index name="gui_access_rights_uniq">
+      <type>btree</type>
+      <expression>gui_resource_id, acl_role_id</expression>
+      <constraints>unique</constraints>
+    </index>
+    <index name="gui_access_rights_idx_mode_resource_role">
+      <type>btree</type>
+      <expression>mode, gui_resource_id, acl_role_id</expression>
+    </index>
+    <index name="gui_access_rights_idx_mode">
+      <type>btree</type>
+      <expression>mode</expression>
+    </index>
+  </indexes>
+</table>

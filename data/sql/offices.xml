@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="offices">
+  <comment>Список офисов организаций</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="offices_business_id_fkey">
+        <table>businesses</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор организации, к которой привязан офис</comment>
+    </column>
+    <column name="office_tax_numeric">
+      <comment>ИНН или аналогичный ему номер офиса</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="kpp">
+      <comment>КПП</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="country_iso_nr">
+      <comment>Страна</comment>
+      <old-names>country_id</old-names>
+      <type>integer</type>
+      <default>643</default>
+    </column>
+    <column name="region">
+      <type length="99">varchar</type>
+    </column>
+    <column name="region_id">
+      <type>integer</type>
+    </column>
+    <column name="name">
+      <comment>Наименование офиса</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="phone">
+      <comment>Телефонный номер офиса</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="fax">
+      <type length="99">varchar</type>
+    </column>
+    <column name="email">
+      <comment>Адрес электронной почты офиса</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="www">
+      <comment>Адрес в интернете</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="latitude">
+      <comment>Широта местонахождения офиса</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="longitude">
+      <comment>Долгота местонахождения офиса</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="radius_of_delivery">
+      <type length="99">varchar</type>
+    </column>
+    <column name="radius_of_acceptance">
+      <type length="99">varchar</type>
+    </column>
+    <column name="gln">
+      <comment>Идентификационный номер GLN</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="is_head_office">
+      <comment>Флаг того, что офис является центральным</comment>
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="is_warehouse">
+      <comment>Флаг того, что офис является складом</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="is_obsolete">
+      <comment>Флаг того, что запись более неактуальна</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+</table>

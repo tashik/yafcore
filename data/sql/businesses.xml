@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="businesses">
+  <comment>Список организаций</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="facebook_id">
+      <comment>Facebook идентификатор на facebook.com</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="gln">
+      <comment>Идентификационный номер GLN</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="is_obsolete">
+      <comment>Флаг того, что информация об организации более неактуальна</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="name_full">
+      <comment>Полное наименование организации</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="name_short">
+      <comment>Краткое наименование организации</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="rating">
+      <comment>Показатель рейтинга</comment>
+      <type length="3" precision="1">numeric</type>
+    </column>
+    <column name="stock_exchange">
+      <comment>Сокращённое наименование биржи</comment>
+      <type length="8">varchar</type>
+    </column>
+    <column name="stock_ticker">
+      <comment>Наименование размещения на бирже, если есть</comment>
+      <type length="8">varchar</type>
+    </column>
+    <column name="tax_numeric">
+      <comment>ИНН или его аналог для иностранных организаций</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="twitter_id">
+      <comment>Twitter идентификатор на twitter.com</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="www">
+      <comment>Адрес в интернете</comment>
+      <type length="255">varchar</type>
+    </column>
+  </columns>
+</table>

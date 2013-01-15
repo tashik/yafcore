@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="service_options">
+  <comment>Список опций для услуги</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="option_group_id">
+      <comment>ID группы опции из service_option_group.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="name">
+      <comment>Наименование опции</comment>
+      <type length="99">varchar</type>
+    </column>
+  </columns>
+</table>

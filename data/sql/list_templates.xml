@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_templates">
+  <comment>Справочник шаблонов документов</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+      <comment>Идентификатор</comment>
+    </column>
+    <column name="type">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <comment>Тип шаблона</comment>
+    </column>
+    <column name="format">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <comment>Формат шаблона</comment>
+    </column>
+    <column name="code">
+      <type length="50">varchar</type>
+      <comment>Код (имя константы)</comment>
+    </column>
+    <column name="name">
+      <type length="255">varchar</type>
+      <constraint>not-null</constraint>
+      <comment>Название типа документа</comment>
+    </column>
+    <column name="content">
+      <type>text</type>
+      <comment>Шаблон документа</comment>
+    </column>
+    <column name="date_updated">
+      <type>timestamp with time zone</type>
+      <constraint>not-null</constraint>
+      <comment>Дата обновления\создания</comment>
+    </column>
+  </columns>
+  <indexes>
+    <index name="list_templates_uniq_type_code">
+      <type>btree</type>
+      <expression>type,code</expression>
+      <constraints>unique</constraints>
+    </index>
+  </indexes>
+</table>

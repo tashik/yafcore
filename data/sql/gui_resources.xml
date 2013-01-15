@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="gui_resources">
+  <comment>Ресурсы GUI</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="url">
+      <type length="64">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="actual">
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="descr">
+      <type length="255">varchar</type>
+    </column>
+  </columns>
+  <indexes>
+    <index name="gui_resources_idx_actual">
+      <type>btree</type>
+      <expression>actual</expression>
+    </index>
+  </indexes>
+</table>

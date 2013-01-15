@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_countries">
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="eng_title">
+      <type length="150">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="iso_nr">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="alpha2">
+      <type length="2">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="alpha3">
+      <type length="3">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="is_independent">
+      <type>smallint</type>
+    </column>
+    <column name="currency_alpha3">
+      <type length="3">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="currency_title">
+      <type length="100">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="phone_code">
+      <type length="10">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="internet_domain">
+      <type length="10">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="eng_fulltitle">
+      <type length="250">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="est_title">
+      <type length="100">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="rus_title">
+      <type length="100">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="rus_fulltitle">
+      <type length="250">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="rus_location">
+      <type length="100">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="rus_location_precise">
+      <type length="150">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="display">
+      <type>smallint</type>
+      <default>1</default>
+    </column>
+  </columns>
+</table>

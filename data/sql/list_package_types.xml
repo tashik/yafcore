@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_package_types">
+  <comment>Список типов упаковки</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name_eng">
+      <comment>Наименование типа на английском</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="ab_code">
+      <type length="99">varchar</type>
+    </column>
+    <column name="description_eng">
+      <comment>Описание типа на английском</comment>
+      <type length="512">varchar</type>
+    </column>
+  </columns>
+</table>

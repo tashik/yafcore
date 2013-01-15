@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="business_specifics">
+  <comment>Данные о бизнесе, специфические для страны</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+      <comment>Идентификатор</comment>
+    </column>
+    <column name="business_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="business_specifics_business_id_fkey">
+        <table>businesses</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор бизнеса</comment>
+    </column>
+    <column name="kpp">
+      <comment>КПП</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="ogrn">
+      <comment>ОГРН</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="business_type">
+      <comment>Тип профиля</comment>
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="okved">
+      <comment>Код ОКВЭД</comment>
+      <type length="1000">varchar</type>
+    </column>
+    <column name="okpo">
+      <comment>Код ОКПО</comment>
+      <type length="12">varchar</type>
+    </column>
+    <column name="okopf">
+      <comment>Код ОКОПФ</comment>
+      <type length="2">varchar</type>
+    </column>
+    <column name="guid">
+      <comment>Идентификатор участника документооборота</comment>
+      <type length="46">varchar</type>
+    </column>
+    <column name="fns_id">
+      <type>integer</type>
+      <comment>Идентификатор отделения ФНС</comment>
+    </column>
+  </columns>
+  <indexes>
+    <index name="business_specifics_idx_kpp">
+      <expression>kpp</expression>
+    </index>
+  </indexes>
+</table>

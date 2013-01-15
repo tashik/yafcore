@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="bik">
+  <comment>Справочник БИК</comment>
+  <columns>
+    <column name="VKEY">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="REAL">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="PZN">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="UER">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="RGN">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="IND">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="TNP">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="NNP">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="ADR">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="RKC">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="NAMEP">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="NAMEN">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="NEWNUM">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="NEWKS">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="PERMFO">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="SROK">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="AT1">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="AT2">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="TELEF">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="REGN">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="OKPO">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="DT_IZM">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="CKS">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="KSNP">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="DATE_IN">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="DATE_CH">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="VKEYDEL">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="DT_IZMR">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="deleted">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+  </columns>
+</table>

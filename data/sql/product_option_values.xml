@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="product_option_values">
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="product_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="option_group_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="option_id">
+      <type>integer</type>
+    </column>
+    <column name="value">
+      <type>numeric</type>
+    </column>
+    <column name="measure_unit_id">
+      <type>integer</type>
+    </column>
+    <column name="value_text">
+      <type length="255">varchar</type>
+    </column>
+  </columns>
+</table>

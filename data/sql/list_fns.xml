@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_fns">
+  <comment>Справочник территориальных инспекций ФНС</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <type length="512">varchar</type>
+    </column>
+    <column name="okato">
+      <comment>Код ОКАТО</comment>
+      <type length="10">varchar</type>
+    </column>
+    <column name="inn">
+      <comment>ИНН</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="kpp">
+      <comment>КПП</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="address">
+      <comment>Адрес</comment>
+      <type length="512">varchar</type>
+    </column>
+    <column name="phone">
+      <comment>Номер телефона</comment>
+      <type length="100">varchar</type>
+    </column>
+  </columns>
+</table>

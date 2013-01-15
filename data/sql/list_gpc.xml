@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_gpc">
+  <comment>Справочник GPC</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="segment_name_eng">
+      <comment>Наименование сегмента на английском</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="segment_code">
+      <comment>Код сегмента</comment>
+      <type length="10">varchar</type>
+    </column>
+    <column name="family_name_eng">
+      <comment>Наименование семейства на английском</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="family_code">
+      <comment>Код семейства</comment>
+      <type length="10">varchar</type>
+    </column>
+    <column name="class_name_eng">
+      <comment>Наименование класса на английском</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="class_code">
+      <comment>Код класса</comment>
+      <type length="10">varchar</type>
+    </column>
+    <column name="brick_name_eng">
+      <comment>Наименование группы на английском</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="brick_code">
+      <comment>Код группы</comment>
+      <type length="10">varchar</type>
+    </column>
+    <column name="core_attr_name_eng">
+      <type length="99">varchar</type>
+    </column>
+    <column name="core_attr_code">
+      <type length="99">varchar</type>
+    </column>
+    <column name="core_attr_val_name_eng">
+      <type length="99">varchar</type>
+    </column>
+    <column name="core_attr_val_code">
+      <type length="10">varchar</type>
+    </column>
+  </columns>
+</table>

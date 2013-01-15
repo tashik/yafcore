@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="users">
+  <comment>Пользователи организаций</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <type>integer</type>
+      <references name="users_business_id_fkey">
+        <table>businesses</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор организации</comment>
+    </column>
+    <column name="office_id">
+      <type>integer</type>
+      <references name="users_office_id_fkey">
+        <table>offices</table>
+        <column>id</column>
+        <on-delete>no action</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор офиса организации</comment>
+    </column>
+    <column name="name_first">
+      <comment>Имя</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="name_middle">
+      <comment>Отчество</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="name_last">
+      <comment>Фамилия</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="email">
+      <comment>E-mail</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="email_confirmed">
+      <comment>Флаг подтверждения e-mail</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="password">
+      <comment>Пароль или его хэш</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="position">
+      <comment>Должность пользователя</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="phone">
+      <comment>Номер стационарного или служебного телефона</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="phone_mobile">
+      <comment>Номер мобильного телефона</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="facebook_id">
+      <comment>Facebook идентификатор на facebook.com</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="google_id">
+      <comment>Google идентификатор на google+</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="twitter_id">
+      <comment>Twitter идентификатор на twitter.com</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="is_obsolete">
+      <comment>Флаг того, что учётная запись пользователя более неактуальна</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="is_blocked">
+      <comment>Флаг того, что пользователь заблокирован</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="last_login">
+      <comment>Дата и время последней авторизации</comment>
+      <type>timestamp</type>
+    </column>
+    <column name="is_authorized">
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="activation_key">
+      <type length="99">varchar</type>
+      <comment>Ключ активации</comment>
+    </column>
+    <column name="date_created">
+        <type>timestamp</type>
+        <comment>Дата и время создания</comment>
+    </column>
+  </columns>
+  <indexes>
+    <index name="activation_key_key">
+      <type>btree</type>
+      <expression>activation_key</expression>
+    </index>
+  </indexes>
+
+</table>

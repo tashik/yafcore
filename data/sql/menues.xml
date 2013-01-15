@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="menues">
+  <comment>Меню</comment>
+  <columns>
+    <column name="url">
+      <type length="64">varchar</type>
+    </column>
+    <column name="weight">
+      <type>integer</type>
+      <default>1000</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="icon">
+      <type length="100">varchar</type>
+    </column>
+    <column name="menupath">
+      <type length="256">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="actual">
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+  <indexes>
+    <index name="menues_idx_weight">
+      <type>btree</type>
+      <expression>weight</expression>
+    </index>
+    <index name="menues_idx_actual">
+      <type>btree</type>
+      <expression>actual</expression>
+    </index>
+  </indexes>
+</table>

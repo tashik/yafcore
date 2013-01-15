@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="addresses">
+  <comment>Адреса контрагентов</comment>
+  <columns>
+    <column name="id">
+      <comment>Идентификатор адреса</comment>
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="address_type">
+      <comment>Тип адреса</comment>
+      <type>smallint</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="index">
+      <comment>Индекс</comment>
+      <type>integer</type>
+    </column>
+    <column name="okato">
+      <comment>ОКАТО</comment>
+      <type length="15">varchar</type>
+    </column>
+    <column name="country_iso_nr">
+      <comment>Страна</comment>
+      <type>integer</type>
+      <default>643</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="region">
+      <comment>Регион</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="settlement">
+      <comment>Поселение</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="city">
+      <comment>Город</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="street">
+      <comment>Улица</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="house">
+      <comment>Дом</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="business_id">
+      <comment>Идентификатор организации</comment>
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="addresses_business_id_fkey">
+        <table>businesses</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+    </column>
+    <column name="office_id">
+      <type>integer</type>
+      <references name="addresses_office_id_fkey">
+        <table>offices</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор офиса организации</comment>
+    </column>
+    <column name="actual">
+      <comment>Актуальность адреса</comment>
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+  <indexes>
+    <index name="addresses_idx_business_id_actual">
+      <type>btree</type>
+      <expression>business_id, actual</expression>
+    </index>
+  </indexes>
+</table>
