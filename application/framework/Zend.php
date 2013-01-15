@@ -5,7 +5,6 @@
 require_once 'Zend/Loader/Autoloader.php';
 $autoloader = Zend_Loader_Autoloader::getInstance();
 
-
 class Extended_Application extends Zend_Application {};
 class Extended_Bootstrap_Abstract extends Zend_Application_Bootstrap_Bootstrap {};
 class Extended_Controller_Abstract extends Zend_Controller_Action {}
