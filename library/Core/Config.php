@@ -1,9 +1,12 @@
 <?php
 
-class Core_Config extends Zend_Config_Ini {
+class Core_Config {
+
+  protected $_config = null;
+
   public function __construct($filename, $section = null, $options = false) {
     if (!file_exists($filename) || !is_readable($filename)) {
-      throw new Zend_Config_Exception("Config file $filename is not exists or not readable");
+      throw new Extended_Config_Exception("Config file $filename is not exists or not readable");
     }
     $file = $this->_processFile($filename);
     $fname = tempnam(sys_get_temp_dir(), 'config_');
@@ -11,9 +14,16 @@ class Core_Config extends Zend_Config_Ini {
       $file = join('', $file);
       $r = file_put_contents($fname, $file);
       if (false===$r || $r!=  strlen($file)) {
-        throw new Zend_Config_Exception("Error saving temporary config $fname");
+        throw new Extended_Config_Exception("Error saving temporary config $fname");
       }
-      parent::__construct($fname, $section, $options);
+
+      if(getRegistryItem('frm')==ZEND_FRM) {
+        $this->_config = new Zend_Config_Ini($fname, $section, $options);
+      } else {
+        $this->_config = new Yaf_Config_Ini($fname, $section);
+      }
+      setRegistryItem('confobject', $this->_config);
+
     } catch (Exception $e) {
       unlink($fname);
       throw $e;
@@ -21,12 +31,16 @@ class Core_Config extends Zend_Config_Ini {
     unlink($fname);
   }
 
+  public function getConfig() {
+    return $this->_config;
+  }
+
   protected function _processFile($filename) {
     $file = file($filename);
     $basepath = pathinfo($filename);
     $basepath = isset($basepath['dirname'])?$basepath['dirname']:'./';
     if (false === $file) {
-      throw new Zend_Config_Exception("Cannot read config file $filename");
+      throw new Extended_Config_Exception("Cannot read config file $filename");
     }
     $tmpconfig = array();
     foreach ($file as $line) {

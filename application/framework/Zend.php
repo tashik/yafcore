@@ -11,6 +11,9 @@ class Extended_Controller_Abstract extends Zend_Controller_Action {}
 class Extended_Action_Abstract extends Zend_Controller_Action {}
 class Extended_Plugin_Abstract extends Zend_Controller_Plugin_Abstract {}
 
+class Extended_Config_Ini extends Zend_Config_Ini {}
+class Extended_Config_Exception extends Zend_Config_Exception {}
+
 
 function getRegistryItem($name) {
   return Zend_Registry::get($name);

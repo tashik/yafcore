@@ -1022,7 +1022,7 @@ function toArray($var) {
   return $var;
 }
 
-function getContentType($filename) {
+function getFileContentType($filename) {
   if (function_exists('finfo_open')) {
     $r = finfo_open();
     return finfo_file($r, $filename, FILEINFO_MIME_TYPE);

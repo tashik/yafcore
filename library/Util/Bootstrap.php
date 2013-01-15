@@ -38,7 +38,11 @@ function initConfig($file) {
   $cache = getRegistryItem('cache');
   $cache_key = "config_".APPLICATION_ENV.APPLICATION_CLASS;
   if (!($config = $cache->load($cache_key))) {
-    $config = new Core_Config($file, APPLICATION_ENV);
+    $configObj = new Core_Config($file, APPLICATION_ENV);
+    $config = $configObj->getConfig();
+    if(getRegistryItem('frm')==YAF_FRM) {
+      $config = $config->toArray();
+    }
     $cache->save($config, $cache_key);
   }
   setRegistryItem('config', $config);
@@ -55,7 +59,7 @@ function reloadConfig($file) {
 function bootstrapApplication() {
   // Create application, bootstrap, and run
   try {
-    $application = new Extended_Application(
+    $application = getApplication(
         initConfig(APPLICATION_PATH . "/application/conf/".strtolower(getRegistryItem('frm'))."/application.ini")
     );
     setRegistryItem('application', $application);
@@ -96,9 +100,7 @@ if (isset($_SERVER['APPLICATION_ENV']) && 'development'==$_SERVER["APPLICATION_E
 }
 
 if (defined('DISABLE_CODE_CACHE')) {
-  if(getRegistryItem('frm')==ZEND_FRM) {
-    require_once "Zend/Loader/Autoloader.php";
-  }
+  require_once "Zend/Loader/Autoloader.php";
 } else {
   require_once "Core/Autoload/Autoload.php";
 
@@ -124,7 +126,9 @@ $autoloader = getAutoloaderInstance();
 if (!defined('DISABLE_CODE_CACHE')) {
   $autoloader->setDefaultAutoloader(array("My_NameScheme_Autoload", "classAutoloader"));
 }
+
 $autoloader->registerNamespace('Core');
+
 
 if (false&&APPLICATION_ENV!='production') {
   Core_Debug::setEnabled(true);

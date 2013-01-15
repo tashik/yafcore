@@ -19,7 +19,7 @@ class Yaf_Bootstrap extends Extended_Bootstrap_Abstract{
   public function _initConfig() {
 		//Configuration load
     if ('testing'==APPLICATION_ENV) {
-      $config = Extended_Application::app()->getConfig();
+      $config = getRegistryItem('application')->getConfig();
 		  setRegistryItem('config', $config);
     } else {
       $config = getRegistryItem('config');
