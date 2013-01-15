@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_regions">
+  <columns>
+    <column name="id">
+      <type>integer</type>
+        <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <type length="128">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="full_name">
+      <type length="128">varchar</type>
+    </column>
+    <column name="okato">
+      <type length="11">varchar</type>
+    </column>
+    <column name="latitude">
+      <type length="13" precision="8">numeric</type>
+    </column>
+    <column name="longitude">
+      <type length="13" precision="10">numeric</type>
+    </column>
+  </columns>
+</table>

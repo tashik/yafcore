@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="services_product_map">
+  <comment>Список групп опций для услуги</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="service_id">
+      <type>integer</type>
+    </column>
+    <column name="product_included_id">
+      <type>integer</type>
+    </column>
+  </columns>
+</table>

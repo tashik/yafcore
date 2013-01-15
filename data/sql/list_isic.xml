@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_isic">
+  <comment>Справочник ОКП</comment>
+  <columns>
+    <column name="id">
+      <comment>pk</comment>
+      <type>integer</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="code">
+      <comment>Код</comment>
+      <type length="16">varchar</type>
+      <constraint>not-null unique</constraint>
+    </column>
+    <column name="name">
+      <comment>Наименование</comment>
+      <type length="512">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="control_number">
+      <comment>Контрольное число</comment>
+      <type>smallint</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="parent_id">
+      <comment>Вышестоящий класс</comment>
+      <type>integer</type>
+      <default>null</default>
+    </column>
+    <column name="parent_code">
+      <comment>Код вышестоящего класса</comment>
+      <type length="16">varchar</type>
+      <default>null</default>
+    </column>
+    <column name="node_count">
+      <comment>Количество элементов в ветке</comment>
+      <type>smallint</type>
+      <default>0</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+</table>

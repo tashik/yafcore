@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="bank_accounts">
+  <comment>Банковские реквизиты контрагентов</comment>
+  <columns>
+    <column name="id">
+      <comment>Идентификатор реквизитов</comment>
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="bank_accounts_business_id_fkey">
+        <table>businesses</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор организации</comment>
+    </column>
+    <column name="office_id">
+      <type>integer</type>
+      <references name="bank_accounts_office_id_fkey">
+        <table>offices</table>
+        <column>id</column>
+        <on-delete>cascade</on-delete>
+        <on-update>no action</on-update>
+      </references>
+      <comment>Идентификатор офиса организации</comment>
+    </column>
+    <column name="account">
+      <comment>Расчетный счет</comment>
+      <type length="23">varchar</type>
+    </column>
+    <column name="account_lic">
+      <comment>Номер лицевого счета</comment>
+      <type length="40">varchar</type>
+    </column>
+    <column name="bik">
+      <comment>БИК</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="account_kor">
+      <comment>Корреспондентский счет</comment>
+      <type length="20">varchar</type>
+    </column>
+    <column name="bank">
+      <comment>Наименование банка</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="bank_addr">
+      <comment>Адрес банка</comment>
+      <type length="1000">varchar</type>
+    </column>
+    <column name="receiver">
+      <comment>Наименование получателя платежа</comment>
+      <type length="180">varchar</type>
+    </column>
+    <column name="actual">
+      <comment>Актуален</comment>
+      <type>boolean</type>
+      <default>true</default>
+    </column>
+  </columns>
+  <indexes>
+    <index name="bank_accounts_idx_business_id_actual">
+      <type>btree</type>
+      <expression>business_id, actual</expression>
+    </index>
+  </indexes>
+</table>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="products">
+  <comment>Список товаров</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <comment>Идентификатор организации-поставщика из businesses.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="reference_item_id">
+      <type>integer</type>
+    </column>
+    <column name="measure_unit_id">
+      <comment>Код ед.измерения list_measure_units.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="gtin">
+      <comment>Международный код маркировки GTIN товара</comment>
+      <type length="13">varchar</type>
+    </column>
+    <column name="supplier_internal_id">
+      <type>integer</type>
+    </column>
+    <column name="minimal_order_amount">
+      <comment>Минимальное кол-во для заказа в указанных единицах измерения</comment>
+      <type>integer</type>
+    </column>
+    <column name="title">
+      <comment>Наименование товара</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="description">
+      <comment>Описание товара</comment>
+      <type>text</type>
+    </column>
+    <column name="color">
+      <comment>Цвет товара</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="dimensions">
+      <comment>Размеры товара</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="weight_grams">
+      <comment>Вес нетто в граммах</comment>
+      <type>integer</type>
+    </column>
+    <column name="weight_grams_package">
+      <comment>Вес упаковки или с упаковкой(брутто) в граммах</comment>
+      <type>integer</type>
+    </column>
+    <column name="volume_litres">
+      <comment>Объём в литрах</comment>
+      <type>integer</type>
+    </column>
+    <column name="package_type_id">
+      <comment>ID типа упаковки из list_package_types.id</comment>
+      <type>smallint</type>
+    </column>
+    <column name="brand_title">
+      <comment>Наименование торговой марки</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="gpc_segment">
+      <comment>ID категории сегмента list_gpc.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="gpc_family">
+      <comment>ID категории семейства list_gpc.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="gpc_class">
+      <comment>ID категории класса list_gpc.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="gpc_brick">
+      <comment>ID категории группы list_gpc.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="target_market_country_id">
+      <comment>ID страны предполагаемого сбыта из list_countries.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="manufacturer_gln">
+      <comment>GLN номер производителя</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="manufacturer_business_id">
+      <comment>ID организации производителя (?)</comment>
+      <type>integer</type>
+    </column>
+    <column name="manufacturer_name">
+      <comment>Наименование производителя</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="manufacturing_country_id">
+      <comment>ID страны изготовителя</comment>
+      <type>integer</type>
+    </column>
+    <column name="guarantee_length_days">
+      <comment>Кол-во дней гарантии на товар</comment>
+      <type>smallint</type>
+    </column>
+    <column name="best_before_days">
+      <comment>Кол-во дней, в течение которых товар годен (видимо, со дня изготовления)</comment>
+      <type>smallint</type>
+    </column>
+    <column name="date_added">
+      <comment>Дата добавления</comment>
+      <type>timestamp</type>
+    </column>
+    <column name="added_user_id">
+      <comment>ID пользователя, добавившего товар</comment>
+      <type>integer</type>
+    </column>
+    <column name="in_stock">
+      <comment>Флаг того, что товар в наличии</comment>
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="production_rate_units">
+      <type length="3" precision="1">numeric</type>
+    </column>
+    <column name="production_rate_period">
+      <comment>До какого момента времени доступна оценка продукта</comment>
+      <type>timestamp</type>
+    </column>
+    <column name="is_delivery_possible">
+      <comment>Флаг того, что доставка возможна</comment>
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="isic_id">
+      <comment>ID из таблицы list_isic</comment>
+      <type>integer</type>
+    </column>
+    <column name="gpc_id">
+      <comment>ID из таблицы list_gps</comment>
+      <type>integer</type>
+    </column>
+  </columns>
+</table>

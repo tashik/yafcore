@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_cities">
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <type length="255">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="alias">
+      <type length="255">varchar</type>
+      <default>NULL::character varying</default>
+    </column>
+    <column name="latitude">
+      <type length="10" precision="6">numeric</type>
+    </column>
+    <column name="longitude">
+      <type length="10" precision="6">numeric</type>
+    </column>
+    <column name="region_id">
+      <type>integer</type>
+    </column>
+    <column name="okato">
+      <type length="11">varchar</type>
+    </column>
+  </columns>
+</table>

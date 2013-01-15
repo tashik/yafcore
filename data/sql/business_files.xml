@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="business_files">
+  <comment>Список документов организации</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <comment>Идентификатор организации из businesses.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="user_id">
+      <comment>ID пользователя организации, загрузившего файл из users.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="title">
+      <comment>Наименование документа</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="filename">
+      <comment>Имя файла</comment>
+      <type length="512">varchar</type>
+    </column>
+    <column name="size">
+      <comment>Размер документа</comment>
+      <type>integer</type>
+    </column>
+    <column name="date">
+      <comment>Дата добавления документа</comment>
+      <type>timestamp</type>
+    </column>
+    <column name="is_obsolete">
+      <comment>Флаг того, что документ неактуален</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="hash">
+      <comment>Хэш по гост</comment>
+      <type length="128">varchar</type>
+    </column>
+  </columns>
+</table>

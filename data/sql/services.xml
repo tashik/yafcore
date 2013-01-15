@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="services">
+  <comment>Список услуг</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <comment>Идентификатор организации-поставщика из businesses.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="reference_item_id">
+      <type>integer</type>
+    </column>
+    <column name="measure_unit_id">
+      <comment>Код ед.измерения list_measure_units.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="supplier_internal_id">
+      <comment>Внутренний ID поставщика услуги</comment>
+      <type>integer</type>
+    </column>
+    <column name="minimal_order_amount">
+      <comment>Минимальное кол-во для заказа в указанных единицах измерения</comment>
+      <type>integer</type>
+    </column>
+    <column name="title">
+      <comment>Наименование услуги</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="description">
+      <comment>Описание услуги</comment>
+      <type>text</type>
+    </column>
+    <column name="guarantee_length_days">
+      <comment>Кол-во дней гарантии</comment>
+      <type>smallint</type>
+    </column>
+    <column name="date_added">
+      <comment>Дата лобавления</comment>
+      <type>timestamp</type>
+    </column>
+    <column name="added_user_id">
+      <comment>ID пользователя, добавившего услуг из users.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="contract_length_hours">
+      <type>numeric</type>
+    </column>
+    <column name="gics_id">
+      <comment>ID из таблицы list_gics</comment>
+      <type>integer</type>
+    </column>
+  </columns>
+</table>

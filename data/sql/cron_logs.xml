@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="cron_logs">
+  <comment>Лог крона</comment>
+  <columns>
+    <column name="id">
+      <comment>Идентификатор записи</comment>
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <comment>Экшн крона</comment>
+      <type length="32">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="date">
+      <comment>Дата выполнения</comment>
+      <type>timestamp with time zone</type>
+      <default>now()</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="status">
+      <type>boolean</type>
+    </column>
+    <column name="duration">
+      <comment>Длительность выполнения</comment>
+      <type>interval</type>
+    </column>
+    <column name="message">
+      <comment>Комментарий выполнения</comment>
+      <type length="255">varchar</type>
+    </column>
+  </columns>
+  <indexes>
+    <index name="cron_logs_idx_date">
+      <type>btree</type>
+      <expression>date</expression>
+    </index>
+    <index name="cron_logs_idx_name">
+      <type>btree</type>
+      <expression>name</expression>
+    </index>
+    <index name="cron_logs_idx_status">
+      <type>btree</type>
+      <expression>status</expression>
+    </index>
+  </indexes>
+</table>

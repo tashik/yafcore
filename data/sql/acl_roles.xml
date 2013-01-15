@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="acl_roles">
+  <comment>Список ролей</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <type length="200">varchar</type>
+    </column>
+    <column name="actual">
+      <type>boolean</type>
+      <default>true</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="user_role">
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="operator_role">
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+</table>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="delivery_costs">
+  <comment>Список стоимостей доставки</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <comment>ID организации (?)</comment>
+      <type>integer</type>
+    </column>
+    <column name="office_id">
+      <comment>ID офиса (?)</comment>
+      <type>integer</type>
+    </column>
+    <column name="distance">
+      <comment>Расстояние</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="price">
+      <comment>Стоиомсть доставки</comment>
+      <type length="11" precision="2">numeric</type>
+    </column>
+    <column name="weight">
+      <comment>Масса доставляемого товара в граммах</comment>
+      <type>integer</type>
+    </column>
+  </columns>
+</table>

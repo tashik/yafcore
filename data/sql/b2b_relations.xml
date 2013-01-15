@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="b2b_relations">
+  <comment>Взаимосвязи между организациями</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <comment>Идентификатор организации из businesses.id</comment>
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="relation_type_id">
+      <comment>Тип взаимосвязи организаций</comment>
+      <type>smallint</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="relative_business_id">
+      <comment>Идентификатор организации, с которой связана организация с business_id</comment>
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="is_obsolete">
+      <comment>Флаг того, что информация о связи более неактуальна</comment>
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+</table>

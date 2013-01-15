@@ -5,7 +5,7 @@
  * @see http://www.php.net/manual/en/yaf-dispatcher.catchexception.php
  * @author tashik
  */
-class ErrorController extends My_Controller_Abstract {
+class ErrorController extends Extended_Controller_Action {
 
 	//Directly through the parameters to get an exception
 	public function errorAction($exception) {

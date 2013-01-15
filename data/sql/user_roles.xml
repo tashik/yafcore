@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="user_roles">
+  <comment>Роли пользователя</comment>
+  <columns>
+    <column name="user_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="user_roles_user_id_fkey">
+        <table>users</table>
+        <column>id</column>
+        <on-delete>no action</on-delete>
+        <on-update>no action</on-update>
+      </references>
+    </column>
+    <column name="acl_role_id">
+      <type>integer</type>
+      <constraint>not-null</constraint>
+      <references name="user_roles_acl_role_id_fkey">
+        <table>acl_roles</table>
+        <column>id</column>
+        <on-delete>no action</on-delete>
+        <on-update>no action</on-update>
+      </references>
+    </column>
+    <column name="actual">
+      <type>boolean</type>
+      <default>true</default>
+    </column>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+  </columns>
+  <indexes>
+    <index name="user_roles_uniq">
+      <type>btree</type>
+      <expression>user_id, acl_role_id</expression>
+      <constraints>unique</constraints>
+    </index>
+    <index name="user_roles_idx_actual">
+      <type>btree</type>
+      <expression>actual</expression>
+    </index>
+    <index name="user_roles_idx_acl_role_id">
+      <type>btree</type>
+      <expression>acl_role_id</expression>
+    </index>
+    <index name="user_roles_idx_user_id">
+      <type>btree</type>
+      <expression>user_id</expression>
+    </index>
+  </indexes>
+</table>

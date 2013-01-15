@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns="http://ololo.cc/files/database.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ololo.cc/files/database.xsd">
+  <xsd:annotation>
+    <xsd:documentation xml:lang="en">
+     XML схема для описания схемы БД
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:element name="dbschema" type="databaseSchemaType" />
+  <xsd:element name="table" type="tableType" />
+  <xsd:element name="procedure" type="procedureType" />
+
+  <xsd:complexType name="databaseSchemaType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Схема самой БД
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="tables" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень таблиц в БД
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="table" type="tableType" minOccurs="1" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="procedures" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень процедур в БД
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="procedure" type="procedureType" minOccurs="1" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="namespace" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="tableType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Схема таблицы
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="comment" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Коммент таблицы
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="old-names" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень предыдущих имен этой таблицы через пробел.
+          Используется при миграции: если таблицы в базе нет, но есть одна из перечисленных,
+          то эта существующая таблица будет переименована. Иначе таблица будет создана пустой с нуля.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="columns" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень колонок таблицы
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="column" type="columnType" minOccurs="1" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="constraints" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень констрейнов таблицы (пока не используется: констрейны на одну колонку указываются в самой колонке,
+          а констрейны сразу по нескольким колонкам — в соответствующем констрейновом индексе)
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="constraint" type="constraintType" minOccurs="1" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="indexes" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень индексов таблицы
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="index" type="indexType" minOccurs="1" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="triggers" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень триггеров таблицы
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="trigger" type="triggerType" minOccurs="1" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="columnType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Описание схемы колонки
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="comment" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Коммент к колонке
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="old-names" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Перечень других имен колонки через пробел. Аналогично полю old-names таблицы.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="type" type="columnTypeType" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Тип колонки
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="default" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Значение по умолчанию
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="constraint" type="constraintListType" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Констрейны колонки. Актуально только not-null и primary. Остальные констрейны
+          следует задавать через индексы.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="sequence" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Сиквенсы, которые принадлежат колонке Не используется
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="references" type="referenceType" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Форейн кей колонки, если есть
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="comment" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Коммент к колонке
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="referenceType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Описание форейн кея. Мультиколоночные форейны не поддерживаются.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="table" type="xsd:string" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Таблица, на которую ссылается форейн
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="column" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+          Колонка, на которую ссылается форейн
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="on-delete" type="actionType" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Поведение форейна при удалении значения, на которое есть ссылка
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="on-update" type="actionType" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Поведение форейна при обновлении значения, на которое есть ссылка
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" />
+  </xsd:complexType>
+
+  <xsd:simpleType name="actionType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Поведение форейна. См. документацию постгри.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="cascade"/>
+      <xsd:enumeration value="no action"/>
+      <xsd:enumeration value="restrict"/>
+      <xsd:enumeration value="set null"/>
+      <xsd:enumeration value="set default"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="numericDataTypesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Числовые типы
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="smallint" />
+      <xsd:enumeration value="integer" />
+      <xsd:enumeration value="bigint" />
+      <xsd:enumeration value="decimal" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Общая длина поля указывается в аттрибуте length тега type, а точность
+          (длина дробной части) в аттрибуте precision
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="numeric" />
+      <xsd:enumeration value="real" />
+      <xsd:enumeration value="double precision" />
+      <xsd:enumeration value="serial" />
+      <xsd:enumeration value="bigserial" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="timeDataTypesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Временны́ е типы
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="timestamp" />
+      <xsd:enumeration value="timestamp with time zone" />
+      <xsd:enumeration value="timestamp without time zone" />
+      <xsd:enumeration value="date" />
+      <xsd:enumeration value="time" />
+      <xsd:enumeration value="time with time zone" />
+      <xsd:enumeration value="time without time zone" />
+      <xsd:enumeration value="interval" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="otherDataTypesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Всякие разные типы
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="boolean" />
+      <xsd:enumeration value="uuid" />
+      <xsd:enumeration value="xml" />
+      <xsd:enumeration value="tsvector" />
+      <xsd:enumeration value="tsquery" />
+      <xsd:enumeration value="inet" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="characterDataTypesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Строковые типы
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="character" />
+      <xsd:enumeration value="varchar" />
+      <xsd:enumeration value="text" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="dataTypesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Типы данных
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:union memberTypes="numericDataTypesEnum characterDataTypesEnum timeDataTypesEnum otherDataTypesEnum" />
+  </xsd:simpleType>
+
+  <xsd:complexType name="columnTypeType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Тип данных в колонке
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="dataTypesEnum">
+        <xsd:attribute name="length" type="xsd:decimal" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation>
+            «Длина» данных, актуально (и обязательно) для varchar и decimal
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="precision" type="xsd:decimal" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation>
+            Точность данных, актуально для decimal
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="constraintType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Описание мультиколоночного констрейна (пока не используется)
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="type" type="constraintListType" />
+      <xsd:element name="columns" type="columnsListType" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="indexType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Описание индекса
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="type" type="indexTypeType" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Тип индекса
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="expression" type="xsd:string" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Выражение, по которому построен индекс (в простейшем случае имя колонки)
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="constraints" type="constraintListType" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Констрейны индекса
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" use="required" />
+  </xsd:complexType>
+
+  <xsd:simpleType name="indexTypeType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Перечень типов индексов
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="btree"/>
+      <xsd:enumeration value="hash"/>
+      <xsd:enumeration value="gin"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="columnsListType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Список колонок
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:list itemType="xsd:string"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="constraintTypeType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Перечень типов констрейнов
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="unique" />
+      <xsd:enumeration value="not-null" />
+      <xsd:enumeration value="primary">
+        <xsd:annotation>
+          <xsd:documentation>
+          Праймари-кей, актуально только для констрейнов колонки.
+          Индексы по праймари кею создаются автоматически, их указывать не надо.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="constraintListType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Список констрейнов
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:list itemType="constraintTypeType"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="eventsEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Перечень возможных событий у триггера
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="insert" />
+      <xsd:enumeration value="update" />
+      <xsd:enumeration value="delete" />
+      <xsd:enumeration value="truncate" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="eventsListType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Список событий триггера
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:list itemType="eventsEnum"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="triggerTypesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Перечень типов триггеров
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="before" />
+      <xsd:enumeration value="after" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="triggerScopeEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Перечень уровней триггеров
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="row" />
+      <xsd:enumeration value="statement" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="triggerType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Описание триггера
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="type" type="triggerTypesEnum" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Тип триггера (before- или after-)
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="events" type="eventsListType" >
+        <xsd:annotation>
+          <xsd:documentation>
+          События, при которых триггер должен срабатывать
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="each" type="triggerScopeEnum" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Уровень срабатывания триггера (построчный или поинструкционный)
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="procedure" type="xsd:string" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Имя процедуры, которая вызывается при срабатывании триггера
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="arguments" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Аргументы для процедуры, если нужны
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" use="required" />
+    <xsd:attribute name="disabled" type="xsd:boolean" />
+  </xsd:complexType>
+
+  <xsd:simpleType name="languagesEnum">
+    <xsd:annotation>
+      <xsd:documentation>
+      Перечень языков для процедур
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="plpgsql" />
+      <xsd:enumeration value="sql" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="procedureType">
+    <xsd:annotation>
+      <xsd:documentation>
+      Описание процедуры
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="arguments" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Строка аргументов процедуры
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="return" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Тип возвращаемого значения
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="definition" type="xsd:string" minOccurs="0" >
+        <xsd:annotation>
+          <xsd:documentation>
+          Текст процедуры
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" use="required" />
+    <xsd:attribute name="language" type="languagesEnum" use="required" >
+      <xsd:annotation>
+        <xsd:documentation>
+        Язык, на котором написана процедура
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="sessions2">
+  <columns>
+    <column name="id">
+      <type length="32">varchar</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="data">
+      <type>text</type>
+    </column>
+    <column name="ip">
+      <type length="64">varchar</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="accessed">
+      <type>timestamp</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="userid">
+      <type>integer</type>
+    </column>
+    <column name="lock_ip">
+      <type>boolean</type>
+      <default>false</default>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+  <indexes>
+    <index name="sessions2_accessed_index">
+      <type>btree</type>
+      <expression>accessed</expression>
+    </index>
+    <index name="sessions2_id_ip_index">
+      <type>btree</type>
+      <expression>id, ip</expression>
+    </index>
+    <index name="sessions2_ip_index">
+      <type>btree</type>
+      <expression>ip</expression>
+    </index>
+  </indexes>
+</table>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="user_rank_history">
+  <comment>Список оценок пользователей</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="user_id">
+      <type>integer</type>
+    </column>
+    <column name="rank">
+      <type length="3" precision="1">numeric</type>
+    </column>
+    <column name="date_ranked">
+      <type>timestamp</type>
+    </column>
+  </columns>
+</table>

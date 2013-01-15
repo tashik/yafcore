@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_naics">
+  <comment>Справочник NAICS</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="category_name">
+      <type length="512">varchar</type>
+    </column>
+    <column name="parent_id">
+      <comment>ОКВЭД код родителя</comment>
+      <type length="10">varchar</type>
+    </column>
+    <column name="okved">
+      <comment>Код ОКВЭД</comment>
+      <type length="10">varchar</type>
+    </column>
+  </columns>
+</table>

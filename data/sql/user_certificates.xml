@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="user_certificates">
+  <comment>Список сертификатов пользователей</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="user_id">
+      <comment>ID пользователя владельца сертификата из users.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="serial">
+      <comment>Серийный номер сертификата</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="issuer">
+      <comment>Наименование организации, выпустившей сертификат</comment>
+      <type length="512">varchar</type>
+    </column>
+    <column name="date_added">
+      <comment>Дата и время выпуска сертификата</comment>
+      <type>timestamp</type>
+    </column>
+    <column name="date_of_expiry">
+      <comment>Дата и время окончания действия сертификата</comment>
+      <type>timestamp</type>
+    </column>
+  </columns>
+</table>

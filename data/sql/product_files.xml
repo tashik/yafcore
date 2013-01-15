@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="product_files">
+  <comment>Список файлов товаров</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="product_id">
+      <type>integer</type>
+    </column>
+    <column name="title">
+      <type length="255">varchar</type>
+    </column>
+    <column name="filename">
+      <type length="512">varchar</type>
+    </column>
+    <column name="size">
+      <type>integer</type>
+    </column>
+    <column name="date">
+      <type>timestamp</type>
+    </column>
+  </columns>
+</table>

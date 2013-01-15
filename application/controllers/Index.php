@@ -5,7 +5,7 @@
  * @desc Default Controller
  * @see http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
-class IndexController extends My_Controller_Abstract {
+class IndexController extends Extended_Controller_Action {
 
 	/**
      * Default Action

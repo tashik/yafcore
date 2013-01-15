@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="b2b_classifications">
+  <comment>Классификатор организаций</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="business_id">
+      <comment>ID организации businesses.id</comment>
+      <type>integer</type>
+    </column>
+    <column name="class_id">
+      <comment>ID класса</comment>
+      <type>integer</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="classification_type_id">
+      <comment>ID типа классификации list_classification_types.id</comment>
+      <type>smallint</type>
+      <constraint>not-null</constraint>
+    </column>
+  </columns>
+</table>

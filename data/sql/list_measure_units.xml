@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_measure_units">
+  <comment>Список единиц измерения товаров/услуг</comment>
+  <columns>
+    <column name="id">
+      <type>integer</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <type>text</type>
+      <constraint>not-null</constraint>
+    </column>
+    <column name="description">
+      <type>text</type>
+    </column>
+  </columns>
+</table>

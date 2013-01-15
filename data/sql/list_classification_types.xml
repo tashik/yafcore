@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="list_classification_types">
+  <comment>Список типов классификаций</comment>
+  <columns>
+    <column name="id">
+      <type>serial</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="name">
+      <comment>Наименование классификатора</comment>
+      <type length="99">varchar</type>
+    </column>
+    <column name="description">
+      <comment>Описание классификатора</comment>
+      <type length="255">varchar</type>
+    </column>
+    <column name="table_name">
+      <comment>Название таблицы со списком критериев классификатора</comment>
+      <type length="99">varchar</type>
+    </column>
+  </columns>
+</table>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="sessions">
+  <columns>
+    <column name="session_id">
+      <type length="32">varchar</type>
+      <constraint>not-null primary</constraint>
+    </column>
+    <column name="modified">
+      <type>integer</type>
+    </column>
+    <column name="lifetime">
+      <type>integer</type>
+    </column>
+    <column name="session_data">
+      <type>text</type>
+    </column>
+  </columns>
+</table>
