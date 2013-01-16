@@ -27,7 +27,7 @@ if (defined('DISABLE_CODE_CACHE')) {
   }
 }
 
-if (false && class_exists('Yaf_Application')) {
+if (class_exists('Yaf_Application')) {
   require_once APPLICATION_PATH.'/application/framework/Yaf.php';
 } else {
   /**
