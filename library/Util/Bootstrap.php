@@ -137,4 +137,4 @@ initCache();
 //include('zend.phar');
 date_default_timezone_set('Europe/Moscow');
 
-require_once APPLICATION_PATH.'/application/'.getRegistryItem('frm').'_Bootstrap.php';
+//require_once APPLICATION_PATH.'/application/'.getRegistryItem('frm').'_Bootstrap.php';
