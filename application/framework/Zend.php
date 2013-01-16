@@ -7,7 +7,7 @@ $autoloader = Zend_Loader_Autoloader::getInstance();
 setRegistryItem('frm', ZEND_FRM);
 
 function getApplication($path_to_config, $options=array()) {
-  return new Zend_Application($path_to_config);
+  return new Zend_Application(APPLICATION_ENV, $path_to_config);
 }
 
 //class Extended_Application extends Zend_Application {};
