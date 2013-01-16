@@ -2,9 +2,18 @@
 /**
  * @deprecated
  */
-require_once 'Zend/Loader/Autoloader.php';
-$autoloader = Zend_Loader_Autoloader::getInstance();
+//require_once 'Zend/Loader/Autoloader.php';
+//$autoloader = Zend_Loader_Autoloader::getInstance();
 setRegistryItem('frm', ZEND_FRM);
+
+class_exists('Zend_Controller_Action_HelperBroker');
+class_exists('Zend_View_Helper_HeadMeta');
+class_exists('Zend_View_Helper_HeadTitle');
+class_exists('Zend_View_Helper_HeadLink');
+class_exists('Zend_View_Helper_HeadScript');
+class_exists('Zend_View_Helper_Layout');
+class_exists('Zend_Controller_Action_Helper_Redirector');
+class_exists('Zend_Uri_Http');
 
 function getApplication($options=array()) {
   return new Zend_Application(APPLICATION_ENV, $options);

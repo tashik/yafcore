@@ -92,10 +92,7 @@ function finalizeApplication() {
   }
 }
 
-if (isset($_SERVER['APPLICATION_ENV']) && 'development'==$_SERVER["APPLICATION_ENV"] && isset($_COOKIE["XDEBUG_SESSION"])) {
-  define('DISABLE_CODE_CACHE', true);
-}
-
+/*
 if (defined('DISABLE_CODE_CACHE')) {
   require_once "Zend/Loader/Autoloader.php";
 } else {
@@ -113,10 +110,11 @@ if (defined('DISABLE_CODE_CACHE')) {
       class_exists('Zend_Controller_Action_Helper_Redirector');
       class_exists('Zend_Uri_Http');
     }
-    /** Zend_Application */
+    /* * Zend_Application * /
     //require_once 'Zend/Application.php';
   }
 }
+*/
 
 $autoloader = getAutoloaderInstance();
 

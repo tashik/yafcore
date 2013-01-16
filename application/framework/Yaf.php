@@ -1,7 +1,7 @@
 <?php
 //This is an API DOC for IDE like PHPStorm for code completion
 //require_once ('YafAPI.php');
-require_once "Zend/Loader/Autoloader.php";
+//require_once "Zend/Loader/Autoloader.php";
 
 function getApplication($path_to_config, $options=array()) {
   return new Yaf_Application($path_to_config);
