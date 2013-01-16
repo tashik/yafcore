@@ -3,33 +3,33 @@ resources.log.stream.writerParams.stream = APPLICATION_PATH "/logs/php_error.log
 
 resources.layout.layoutPath = APPLICATION_PATH "/application/layouts/scripts/"
 
-resources.session.saveHandler.class = Zend_Session_SaveHandler_DbTable
-resources.session.saveHandler.options.name = sessions
-resources.session.saveHandler.options.primary = session_id
-resources.session.saveHandler.options.primaryAssignment = sessionId
-resources.session.saveHandler.options.modifiedColumn = modified
-resources.session.saveHandler.options.dataColumn = session_data
-resources.session.saveHandler.options.lifetimeColumn = lifetime
-resources.session.remember_me_seconds = 86400
-resources.session.gc_maxlifetime = 86400
-resources.session.cookie_lifetime = 86400
-resources.session.use_only_cookies = on
-resources.session.name = b2bsid
+;resources.session.saveHandler.class = Zend_Session_SaveHandler_DbTable
+;resources.session.saveHandler.options.name = sessions
+;resources.session.saveHandler.options.primary = session_id
+;resources.session.saveHandler.options.primaryAssignment = sessionId
+;resources.session.saveHandler.options.modifiedColumn = modified
+;resources.session.saveHandler.options.dataColumn = session_data
+;resources.session.saveHandler.options.lifetimeColumn = lifetime
+;resources.session.remember_me_seconds = 86400
+;resources.session.gc_maxlifetime = 86400
+;resources.session.cookie_lifetime = 86400
+;resources.session.use_only_cookies = on
+;resources.session.name = b2bsid
 
 general.ext.direct.request.parameter = 'rpc'
 general.ext.direct.request.singleException= FALSE
 general.ext.direct.enableBuffer = true
 
-resources.db.adapter = PDO_PGSQL
-resources.db.params.host = localhost
-resources.db.params.username = b2b_general
-resources.db.params.password = flover
-resources.db.params.dbname = b2b_general
+;resources.db.adapter = PDO_PGSQL
+;resources.db.params.host = localhost
+;resources.db.params.username = b2b_general
+;resources.db.params.password = flover
+;resources.db.params.dbname = b2b_general
 
 resources.memcached.server.host = "localhost"
 
-resources.mongo.host = "localhost"
-resources.mongo.dbname = "b2b_lietenant"
+;resources.mongo.host = "localhost"
+;resources.mongo.dbname = "b2b_lietenant"
 ;resources.mongo.port = 27017
 ;resources.mongo.params = 0
 

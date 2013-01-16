@@ -75,7 +75,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     date_default_timezone_set(getConfigValue('general->timezone', 'Europe/Moscow'));
   }
 
-  protected function _initDatabase() {
+  /*protected function _initDatabase() {
     //fputs(STDERR, "_initDatabase\n");
     $this->bootstrap('Config');
     $this->bootstrap('db');
@@ -86,9 +86,9 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     Zend_Db_Table_Abstract::setDefaultAdapter($db);
     Zend_Db_Table_Abstract::setDefaultMetadataCache($this->_cache);
     setRegistryItem('db', $db);
-  }
+  }*/
 
-  protected function _initSession() {
+  /*protected function _initSession() {
     if (!isset($_SERVER['REQUEST_METHOD'])) {
       return true;
     }
@@ -107,7 +107,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     }
     Zend_Session::start();
     return true;
-  }
+  }*/
 
   protected function _initLogger() {
     $this->bootstrap('Config');
@@ -141,8 +141,8 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
       $this->bootstrap('Cache');
       $this->bootstrap('Config');
       $this->bootstrap('EventsManager');
-      $this->bootstrap('Database');
-      $this->bootstrap('Session');
+      //$this->bootstrap('Database');
+      //$this->bootstrap('Session');
 
 
       /*if (!($config = $this->_cache->load('config'))) {
@@ -151,7 +151,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
       }
       setRegistryItem('config', $config);*/
 
-      $db = getRegistryItem('db');
+      //$db = getRegistryItem('db');
 
     //} catch (Exception $e) {
       //die("Fatal error: ".$e->getMessage());
