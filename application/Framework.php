@@ -18,13 +18,13 @@ if (defined('DISABLE_CODE_CACHE')) {
 if (class_exists('Yaf_Application')) {
   require_once APPLICATION_PATH.'/application/framework/Yaf.php';
 } else {
-  class_exists('Zend_View_Helper_HeadMeta');
+  /*class_exists('Zend_View_Helper_HeadMeta');
   class_exists('Zend_View_Helper_HeadTitle');
   class_exists('Zend_View_Helper_HeadLink');
   class_exists('Zend_View_Helper_HeadScript');
   class_exists('Zend_View_Helper_Layout');
   class_exists('Zend_Controller_Action_Helper_Redirector');
-  class_exists('Zend_Uri_Http');
+  class_exists('Zend_Uri_Http');*/
   require_once APPLICATION_PATH.'/application/framework/Zend.php';
 }
 
