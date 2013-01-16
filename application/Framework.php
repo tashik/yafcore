@@ -12,27 +12,19 @@ if (defined('DISABLE_CODE_CACHE')) {
 
   if (@fopen(APPLICATION_PATH . '/cache/All.php', 'r', true)) {
     include_once(APPLICATION_PATH . '/cache/All.php');
-  } else {
-    if(getRegistryItem('frm')==ZEND_FRM) {
-      class_exists('Zend_View_Helper_HeadMeta');
-      class_exists('Zend_View_Helper_HeadTitle');
-      class_exists('Zend_View_Helper_HeadLink');
-      class_exists('Zend_View_Helper_HeadScript');
-      class_exists('Zend_View_Helper_Layout');
-      class_exists('Zend_Controller_Action_Helper_Redirector');
-      class_exists('Zend_Uri_Http');
-    }
-    /** Zend_Application */
-    //require_once 'Zend/Application.php';
   }
 }
 
 if (class_exists('Yaf_Application')) {
   require_once APPLICATION_PATH.'/application/framework/Yaf.php';
 } else {
-  /**
- * @deprecated
- */
+  class_exists('Zend_View_Helper_HeadMeta');
+  class_exists('Zend_View_Helper_HeadTitle');
+  class_exists('Zend_View_Helper_HeadLink');
+  class_exists('Zend_View_Helper_HeadScript');
+  class_exists('Zend_View_Helper_Layout');
+  class_exists('Zend_Controller_Action_Helper_Redirector');
+  class_exists('Zend_Uri_Http');
   require_once APPLICATION_PATH.'/application/framework/Zend.php';
 }
 
