@@ -1,7 +1,7 @@
 resources.log.stream.writerName = Stream
-resources.log.stream.writerParams.stream = APPLICATION_PATH "/../logs/php_error.log"
+resources.log.stream.writerParams.stream = APPLICATION_PATH "/logs/php_error.log"
 
-resources.layout.layoutPath = APPLICATION_PATH "/layouts/scripts/"
+resources.layout.layoutPath = APPLICATION_PATH "/application/layouts/scripts/"
 
 resources.session.saveHandler.class = Zend_Session_SaveHandler_DbTable
 resources.session.saveHandler.options.name = sessions

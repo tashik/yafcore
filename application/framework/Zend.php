@@ -6,13 +6,13 @@ require_once 'Zend/Loader/Autoloader.php';
 $autoloader = Zend_Loader_Autoloader::getInstance();
 setRegistryItem('frm', ZEND_FRM);
 
-function getApplication($path_to_config, $options=array()) {
-  return new Zend_Application(APPLICATION_ENV, $path_to_config);
+function getApplication($options=array()) {
+  return new Zend_Application(APPLICATION_ENV, $options);
 }
 
 //class Extended_Application extends Zend_Application {};
 class Extended_Bootstrap_Abstract extends Zend_Application_Bootstrap_Bootstrap {};
-class Extended_Controller_Abstract extends Zend_Controller_Action {}
+class Extended_Controller_Action extends Zend_Controller_Action {}
 class Extended_Action_Abstract extends Zend_Controller_Action {}
 class Extended_Plugin_Abstract extends Zend_Controller_Plugin_Abstract {}
 

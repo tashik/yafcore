@@ -75,7 +75,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     date_default_timezone_set(getConfigValue('general->timezone', 'Europe/Moscow'));
   }
 
-  /*protected function _initDatabase() {
+  protected function _initDatabase() {
     //fputs(STDERR, "_initDatabase\n");
     $this->bootstrap('Config');
     $this->bootstrap('db');
@@ -107,7 +107,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     }
     Zend_Session::start();
     return true;
-  }*/
+  }
 
   protected function _initLogger() {
     $this->bootstrap('Config');
@@ -300,11 +300,11 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     return $this->_cache;
   }
 
-  /*protected function _initMongo() {
+  protected function _initMongo() {
     // Инициализация будет on-demand через класс Core_MongoDb, просто отключим
     // плагин, чтобы зенд не пытался инициализировать ресурс (т.к. он не умеет)
     $this->unregisterPluginResource('mongo');
-  }*/
+  }
 
   protected function _initSharedCache() {
     try {
@@ -423,8 +423,8 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
       }  else {
 
       }
-      $auth = new Core_Controller_Plugin_Access(Zend_Auth::getInstance()->getIdentity());
-      $fc->registerPlugin($auth, 0);
+      /*$auth = new Core_Controller_Plugin_Access(Zend_Auth::getInstance()->getIdentity());
+      $fc->registerPlugin($auth, 0); */
       Core_Debug::getGenerateTime('initFC end (Before Dispatch)');
     }
   }
