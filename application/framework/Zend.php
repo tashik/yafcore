@@ -4,8 +4,13 @@
  */
 require_once 'Zend/Loader/Autoloader.php';
 $autoloader = Zend_Loader_Autoloader::getInstance();
+setRegistryItem('frm', ZEND_FRM);
 
-class Extended_Application extends Zend_Application {};
+function getApplication($path_to_config, $options=array()) {
+  return new Zend_Application($path_to_config);
+}
+
+//class Extended_Application extends Zend_Application {};
 class Extended_Bootstrap_Abstract extends Zend_Application_Bootstrap_Bootstrap {};
 class Extended_Controller_Abstract extends Zend_Controller_Action {}
 class Extended_Action_Abstract extends Zend_Controller_Action {}
@@ -27,7 +32,7 @@ function isRegistered($name) {
   return Zend_Registry::isRegistered($name);
 }
 
-setRegistryItem('frm', YAF_FRM);
+
 
 function getAutoloaderInstance() {
   return Zend_Loader_Autoloader::getInstance();

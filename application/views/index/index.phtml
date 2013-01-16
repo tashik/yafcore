@@ -1,3 +1,7 @@
 <?php
+if(getRegistyItem('frm') == ZEND_FRM) {
+  $content = $this->content;
+  $name = $this->name;
+}
 echo $content, " I am ", $name;
 ?>

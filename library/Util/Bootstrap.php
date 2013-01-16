@@ -39,10 +39,7 @@ function initConfig($file) {
   $cache_key = "config_".APPLICATION_ENV.APPLICATION_CLASS;
   if (!($config = $cache->load($cache_key))) {
     $configObj = new Core_Config($file, APPLICATION_ENV);
-    $config = $configObj->getConfig();
-    if(getRegistryItem('frm')==YAF_FRM) {
-      $config = $config->toArray();
-    }
+    $config = $configObj->getConfig()->toArray();
     $cache->save($config, $cache_key);
   }
   setRegistryItem('config', $config);
@@ -140,4 +137,4 @@ initCache();
 //include('zend.phar');
 date_default_timezone_set('Europe/Moscow');
 
-//require_once APPLICATION_PATH.'/application/'.getRegistryItem('frm').'_Bootstrap.php';
+require_once APPLICATION_PATH.'/application/'.getRegistryItem('frm').'_Bootstrap.php';

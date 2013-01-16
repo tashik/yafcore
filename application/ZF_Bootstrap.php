@@ -75,11 +75,11 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     date_default_timezone_set(getConfigValue('general->timezone', 'Europe/Moscow'));
   }
 
-  protected function _initDatabase() {
+  /*protected function _initDatabase() {
     //fputs(STDERR, "_initDatabase\n");
     $this->bootstrap('Config');
     $this->bootstrap('db');
-    /* @var $db Zend_Db_Adapter_Abstract */
+
     $db = $this->getResource('db');
 
     $db->setFetchMode(Zend_Db::FETCH_ASSOC);
@@ -107,7 +107,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     }
     Zend_Session::start();
     return true;
-  }
+  }*/
 
   protected function _initLogger() {
     $this->bootstrap('Config');
@@ -300,11 +300,11 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     return $this->_cache;
   }
 
-  protected function _initMongo() {
+  /*protected function _initMongo() {
     // Инициализация будет on-demand через класс Core_MongoDb, просто отключим
     // плагин, чтобы зенд не пытался инициализировать ресурс (т.к. он не умеет)
     $this->unregisterPluginResource('mongo');
-  }
+  }*/
 
   protected function _initSharedCache() {
     try {
@@ -363,9 +363,14 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     //fputs(STDERR, "_initFC\n");
     Core_Debug::getGenerateTime('initFC start');
     Zend_Controller_Action_HelperBroker::addPrefix('Core_Controller_Action_Helper');
+
     if ( APPLICATION_ENV != 'testing' ) {
       $fc = Zend_Controller_Front::getInstance();
-
+      $fc->setControllerDirectory(array(
+          'default' => '../application/controllers',
+          'B2bedo'    => '../modules/B2bedo/controllers',
+          'B2bnsi'    => '../modules/B2bedo/controllers',
+      ));
       $response = new Zend_Controller_Response_Http;
       $response->setHeader('Content-Type', 'text/html; charset=UTF-8', true);
       $fc->setResponse($response);
@@ -431,7 +436,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     }
   }
 
-  protected function _initIDS() {
+  /*protected function _initIDS() {
     return;
     $this->bootstrap('Database');
     $input = file_get_contents('php://input');
@@ -504,7 +509,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
         exit;
       }
     }
-  }
+  }*/
 
   protected function _checkIDS($str) {
     $score = 0;
@@ -528,20 +533,4 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     return $score;
   }
 
-  /**
-  * Custom init file for modules.
-  *
-  * Allows to load extra settings per module, like routes etc.
-  */
-  public function _initModules(Yaf_Dispatcher $dispatcher)
-  {
-      $app = $dispatcher->getApplication();
-
-      $modules = $app->getModules();
-      foreach ($modules as $module) {
-          if ('index' == strtolower($module)) continue;
-
-          require_once $app->getAppDirectory() . "/modules" . "/$module" . "/_init.php";
-      }
-  }
 }

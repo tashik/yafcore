@@ -16,8 +16,8 @@ class Core_Config {
       if (false===$r || $r!=  strlen($file)) {
         throw new Extended_Config_Exception("Error saving temporary config $fname");
       }
-
-      if(getRegistryItem('frm')==ZEND_FRM) {
+      $frm = getRegistryItem('frm');
+      if($frm==ZEND_FRM) {
         $this->_config = new Zend_Config_Ini($fname, $section, $options);
       } else {
         $this->_config = new Yaf_Config_Ini($fname, $section);
