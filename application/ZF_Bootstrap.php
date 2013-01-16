@@ -19,7 +19,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     $main_module = getConfigValue('general->main_module', 'com');
     $this->_main_module = $main_module;
 
-    $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
+    /*$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
     $viewRenderer->init();
     $view = $viewRenderer->view;
     $view->Doctype()->setDoctype('HTML5');
@@ -31,7 +31,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
       $view->headMeta()->setHttpEquiv('Content-Type', 'text/html; charset=UTF-8');
       $view->headMeta()->setCharset('UTF-8');
       $view->headTitle($this->_config->general->site_title);
-    }
+    }*/
     Core_Debug::getGenerateTime('initView end');
   }
 
@@ -307,6 +307,8 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
   }
 
   protected function _initSharedCache() {
+    $this->unregisterPluginResource('memcached');
+    return;
     try {
       // убираем ресурс мемкеша из списка, т.к. под него нет плагинов
       $this->unregisterPluginResource('memcached');
