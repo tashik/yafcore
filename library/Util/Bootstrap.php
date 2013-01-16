@@ -36,7 +36,7 @@ function initCache() {
 
 function initConfig($file) {
   $cache = getRegistryItem('cache');
-  $cache_key = "config_".APPLICATION_ENV.APPLICATION_CLASS;
+  $cache_key = "config_".getRegistryItem('frm').APPLICATION_ENV.APPLICATION_CLASS;
   if (!($config = $cache->load($cache_key))) {
     $configObj = new Core_Config($file, APPLICATION_ENV);
     $config = $configObj->getConfig()->toArray();
