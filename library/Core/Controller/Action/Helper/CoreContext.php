@@ -38,7 +38,7 @@ class Core_Controller_Action_Helper_CoreContext extends Zend_Controller_Action_H
     public function __construct()
     {
         try {
-            $this->_extRequest = Zend_Registry::get(Core_Keys::EXT_REQUEST_OBJECT);
+            $this->_extRequest = getRegistryItem(Core_Keys::EXT_REQUEST_OBJECT);
         } catch (Zend_Exception $e) {
             $this->_extRequest = null;
         }
@@ -178,8 +178,8 @@ class Core_Controller_Action_Helper_CoreContext extends Zend_Controller_Action_H
                 if ( isset($vars['success']) && $vars['success'] === false ) {
                   $view->status = false;
                 }
-                if ('production'!=APPLICATION_ENV && Zend_Registry::isRegistered('warnings')) {
-                  $warnings = Zend_Registry::get('warnings');
+                if ('production'!=APPLICATION_ENV && isRegistered('warnings')) {
+                  $warnings = getRegistryItem('warnings');
                   if ($warnings) {
                     $view->warnings = $warnings;
                   }

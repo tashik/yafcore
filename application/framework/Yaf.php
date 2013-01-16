@@ -27,7 +27,8 @@ function setRegistryItem($name, $value) {
 }
 
 function isRegistered($name) {
-  return Yaf_Registry::isRegistered($name);
+  $registered =  Yaf_Registry::has($name);
+  return $registered;
 }
 
 setRegistryItem('frm', YAF_FRM);

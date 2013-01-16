@@ -119,7 +119,7 @@ class Core_Controller_Plugin_Soap {
     return $table->insert(array(
        'action' => $this->_request_action,
        'controller' => $this->_request_controller,
-       'user_id' => Zend_Registry::isRegistered('userid')?Zend_Registry::get('userid'):null,
+       'user_id' => isRegistered('userid')?getRegistryItem('userid'):null,
        'request' => is_object($this->_request_data)?$this->_request_data->asXML():$this->_request_data,
        'response' => $result,
        'errors_count' => $is_error?1:0,

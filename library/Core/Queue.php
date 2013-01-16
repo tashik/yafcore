@@ -26,7 +26,7 @@ class Core_Queue extends Zend_Queue_Adapter_AdapterAbstract {
 
   public function count(Zend_Queue $queue = null) {
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
 
     $query = $db->select();
     $query->from($this->_table, array(new Zend_Db_Expr('COUNT(1)')))
@@ -37,7 +37,7 @@ class Core_Queue extends Zend_Queue_Adapter_AdapterAbstract {
 
   public function send($message, Zend_Queue $queue = null) {
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     if (is_object($message)) {
       $message = $message->toArray();
     }
@@ -58,7 +58,7 @@ class Core_Queue extends Zend_Queue_Adapter_AdapterAbstract {
       throw new Zend_Queue_Exception("Queue processing must be done in transaction!");
     }
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $select = $db->select()->from($this->_table)
                  ->where("{$this->_sentColumn} IS NULL")
                  ->forUpdate()
@@ -82,7 +82,7 @@ class Core_Queue extends Zend_Queue_Adapter_AdapterAbstract {
 
   public function updateMessage(Zend_Queue_Message $message) {
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $id_col = $this->_idColumn;
     $sent_col = $this->_sentColumn;
 

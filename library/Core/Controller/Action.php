@@ -153,7 +153,7 @@ class Core_Controller_Action extends Extended_Action_Abstract {
     $coreContext = $this->_helper->coreContext();
 
     $class_hash = get_class($this);
-    $cache = Zend_Registry::get('cache');
+    $cache = getRegistryItem('cache');
     if (!($methods = $cache->load("class_reflection_{$class_hash}"))) {
       $reflection = Zend_Server_Reflection::reflectClass($this);
       $methods_raw = $reflection->getMethods();

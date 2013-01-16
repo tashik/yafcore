@@ -24,7 +24,7 @@ $modelLoader = new Zend_Application_Module_Autoloader(array(
                 'basePath' => APPLICATION_PATH));
 
 $config = new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'development');
-Zend_Registry::set('config', $config);
+setRegistryItem('config', $config);
 //echo APPLICATION_PATH;
 if(APPLICATION_ENV!='production') {
   require_once 'Zend/Log/Formatter/Firebug.php';
@@ -34,11 +34,11 @@ if(APPLICATION_ENV!='production') {
   require_once 'Zend/Log/Writer/Firebug.php';
   $writer = new Zend_Log_Writer_Firebug();
   $logger = new Zend_Log($writer);
-  Zend_Registry::set('logger', $logger);
+  setRegistryItem('logger', $logger);
 }
 $db = Zend_Db::factory($config->resources->db);
 Zend_Db_Table_Abstract::setDefaultAdapter($db);
-Zend_Registry::set('db', $db);
+setRegistryItem('db', $db);
 
 require_once 'Util/functions.php';
 
@@ -53,7 +53,7 @@ $backendOptions  = array(
 );
 
 $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
-Zend_Registry::set('cache', $cache);
+setRegistryItem('cache', $cache);
 // Кэшируем локаль чтоб память не жракала
 initLocale($cache);
 */

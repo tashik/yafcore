@@ -124,7 +124,7 @@ class Core_Crypto_Session
     {
       return true;
     }
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     if (''==self::$_ip) {
       self::$_ip = self::_getUserIP();
     }
@@ -194,7 +194,7 @@ class Core_Crypto_Session
     if (self::$_disable_save) {
       return true;
     }
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $db->delete(self::$_table_name, $db->quoteInto("id = ?", $id));
     return true;
   }
@@ -224,7 +224,7 @@ class Core_Crypto_Session
     if (isset($_SERVER['REQUEST_URI']) && '/'==$_SERVER['REQUEST_URI']) {
       self::$_disable_save = true;
     }
-    //$auth_data = Zend_Registry::get('auth_data');
+    //$auth_data = getRegistryItem('auth_data');
     session_set_cookie_params(getConfigValue('resources->session->cookie_lifetime', ONE_DAY));
     self::$_cookie_name = getConfigValue('resources->session->name', ini_get('session.name'));
     self::$_table_name = getConfigValue('resources->session->saveHandler->options->name', 'sessions');

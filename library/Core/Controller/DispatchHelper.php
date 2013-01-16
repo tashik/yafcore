@@ -120,7 +120,7 @@ class Core_Controller_DispatchHelper {
         $extRequest   = null;
 
         try {
-            $extRequest = Zend_Registry::get(Core_Keys::EXT_REQUEST_OBJECT);
+            $extRequest = getRegistryItem(Core_Keys::EXT_REQUEST_OBJECT);
         } catch (Zend_Exception $e) {
             // ignore
         }

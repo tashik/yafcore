@@ -1054,7 +1054,7 @@ abstract class Core_Mapper
       return false;
     }
 
-    $db=Zend_Registry::get('db');
+    $db=getRegistryItem('db');
     $log_table=$this->_logTable;
     $select=$db->select()->from($log_table);
     $date_field=array_search('date', $this->_logFields);
@@ -1433,7 +1433,7 @@ abstract class Core_Mapper
     // WARN: temporarily disabled
     if ( !empty($deps) && is_array($deps) ) {
       $tableDeps = $table->getDependentTables();
-      //Zend_Registry::get('logger')->debug( $tableDeps );
+      //getRegistryItem('logger')->debug( $tableDeps );
 
       foreach ($deps as $k => $dep) {
         if ( !in_array($dep, $tableDeps) )
@@ -1465,7 +1465,7 @@ abstract class Core_Mapper
           );
 
         } catch (Exception $e) {
-          Zend_Registry::get('logger')->debug( $e );
+          getRegistryItem('logger')->debug( $e );
           continue;
         }
       } // foreach ($deps)
@@ -1484,7 +1484,7 @@ abstract class Core_Mapper
       /*if ( !empty($limit) )
         $select->limit( intval($limit), intval($skip) );*/
 
-      //Zend_Registry::get('logger')->debug( $select->__toString() );
+      //getRegistryItem('logger')->debug( $select->__toString() );
 
       //$rows = $table->fetchAll($select);
       if ( !empty($limit) ) {
@@ -1495,7 +1495,7 @@ abstract class Core_Mapper
       }
 
     } catch (Exception $e) {
-      Zend_Registry::get('logger')->debug( $e );
+      getRegistryItem('logger')->debug( $e );
       return array();
     }
 
@@ -1550,7 +1550,7 @@ abstract class Core_Mapper
               $item[$k] = call_user_func( array($className, '_parseRowSet'), $depRows );
 
             } catch (Exception $e) {
-              Zend_Registry::get('logger')->debug( $e );
+              getRegistryItem('logger')->debug( $e );
               continue;
             }
           }

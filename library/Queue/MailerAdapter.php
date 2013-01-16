@@ -40,7 +40,7 @@ class Queue_MailerAdapter extends Zend_Queue_Adapter_Db
     public function __construct($options, Zend_Queue $queue = null)
     {
         try {
-            $db = Zend_Registry::get('db');
+            $db = getRegistryItem('db');
 
             $this->_messageTable = new Queue_MailerMessage(array(
                 'db' => $db,

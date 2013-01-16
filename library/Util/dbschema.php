@@ -2,7 +2,7 @@
 
 class DBSchema {
   public static function getTables($view = 'public') {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $select = $db->select()->from(array('c'=>'pg_class'), array('oid', 'relname'))
                  ->join(array('n'=>'pg_namespace'), 'n.oid=c.relnamespace', array())
                  ->where('n.nspname=?', $view)
@@ -11,7 +11,7 @@ class DBSchema {
   }
 
   public static function getProcedures($view = 'public') {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $select = $db->select()->from(array('p'=>'pg_proc'), array('oid', 'proname'))
                  ->join(array('n'=>'pg_namespace'), 'n.oid=p.pronamespace', array())
                  ->where('n.nspname=?', $view);
@@ -20,7 +20,7 @@ class DBSchema {
 
   public static function getProcedureInfo($oid) {
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $select = $db->select()->from(array('p'=>'pg_proc'), array())
                  ->join(array('l'=>'pg_language'), 'l.oid=p.prolang', array('language'=>'lanname'))
                  ->columns(array(
@@ -40,7 +40,7 @@ class DBSchema {
 
   public static function getTableInfo($oid) {
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
 
     $result = array();
 
@@ -63,13 +63,13 @@ class DBSchema {
   }
 
   protected static function _getComment($oid) {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
 
     return $db->fetchOne("SELECT description FROM pg_description WHERE objoid=?", array($oid));
   }
 
   protected static function _getIndexes($oid) {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $result = array();
     $idxselect = $db->select()->from(array('i'=>'pg_index'), array('indnatts', 'indisunique', 'indkey', 'indclass', 'indoption', 'indexprs'))
                     ->join(array('c'=>'pg_class'), 'i.indexrelid=c.oid', array('relname'))
@@ -114,7 +114,7 @@ class DBSchema {
   }
 
   protected static function _getColumns($oid) {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
 
     $result = array();
 
@@ -218,7 +218,7 @@ class DBSchema {
 
   protected static function _getTriggers($oid) {
     /* @var $db Zend_Db_Adapter_Abstract */
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
 
     $result = array();
 

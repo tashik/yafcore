@@ -4,7 +4,7 @@ function virusCheck($filename)
 {
   return true; // TODO: Выпилить при комите
   $avscanner='/usr/bin/clamdscan';
-  $config = Zend_Registry::get('config');
+  $config = getRegistryItem('config');
   if ( isset($config->general->av_scanner) )
   {
     $avscanner=$config->general->av_scanner;

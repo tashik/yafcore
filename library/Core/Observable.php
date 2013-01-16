@@ -13,9 +13,9 @@ class Core_Observable {
    */
   public function on($event, $handler) {
     if (!isset($this->_events[$event]) || !$this->_events[$event]) {
-      !$this->_events[$event] = array();
+      $this->_events[$event] = array();
     }
-    !$this->_events[$event][] = $handler;
+    $this->_events[$event][] = $handler;
     return $handler;
   }
 
@@ -91,12 +91,12 @@ class Core_Observable {
  * @return Core_Observable системный менеджер сообщений
  */
 function getEventManager() {
-  if (!Zend_Registry::isRegistered('emgr')) {
+  if (!isRegistered('emgr')) {
     $sys = new Core_Observable();
-    Zend_Registry::set('emgr', $sys);
+    setRegistryItem('emgr', $sys);
     return $sys;
   }
-  return Zend_Registry::get('emgr');
+  return getRegistryItem('emgr');
 }
 
 /**

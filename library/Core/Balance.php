@@ -15,7 +15,7 @@ class Core_Balance
 
   protected static function getFreeDocumentNumber($table, $date=false)
   {
-    $db=Zend_Registry::get('db');
+    $db=getRegistryItem('db');
     if ( $date && !is_numeric($date)) {
       $date = db_date_to_timestamp($date);
     } elseif (!$date) {
@@ -119,7 +119,7 @@ class Core_Balance
     if ($contragent === null) {
       $contragent = $procedure->getOrganizerContragentId();
     }
-    $config = Zend_Registry::get('config');
+    $config = getRegistryItem('config');
     $sum = $config->procedure->service_fee;
     if ($procedure->getProcedureType() == Model_Procedure::PROCEDURE_TYPE_TENDER) {
       $sum = $config->procedure->tender_service_fee;
@@ -285,7 +285,7 @@ class Core_Balance
       $supplier = Model_Contragent::load($supplier);
     }
 
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $select = $db->select()
                  ->from(DbTable_TransactionLog::NAME, array('SUM(sum)'))
                  ->where('contragent_id = ?', $supplier->getId())
@@ -406,7 +406,7 @@ class Core_Balance
       // Проверяем, чтобы не разблокировать по второму разу
       if(!$isBlocked) return true;
       // Подсчитываем новую сумму заблокированных средств
-      $db=Zend_Registry::get('db');
+      $db=getRegistryItem('db');
       $amount = $db->fetchOne("select sum from transaction_log where lot_id=? and contragent_id=? and operation_type='deposit_blocked' and (correction=false OR correction IS NULL) order by date desc limit(1) offset(0)", array($lot->getId(), $applic->getSupplierId()));
       if($amount) {
         $newBlocked = $curBlocked-$amount;

@@ -64,8 +64,8 @@ class Core_Controller_Plugin_Access extends Zend_Controller_Plugin_Abstract {
                                     ));
       if ($r && $r['log']) {
         //$params = $request->getParams();
-        if (Zend_Registry::isRegistered(Core_Keys::EXT_REQUEST_OBJECT)) {
-          $extDirect = Zend_Registry::get(Core_Keys::EXT_REQUEST_OBJECT);
+        if (isRegistered(Core_Keys::EXT_REQUEST_OBJECT)) {
+          $extDirect = getRegistryItem(Core_Keys::EXT_REQUEST_OBJECT);
           $extparam = $extDirect->getConfigValue('extParameter');
           if ($extparam && isset($params[$extparam])) {
             $params = $params[$extparam];

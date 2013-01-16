@@ -6,10 +6,10 @@ class Core_Acl extends Zend_Acl
   {
     /*$res = new Core_Acl_AclResources();
     $r = new Core_Acl_AclRoles();
-    $roles = Zend_Registry::get('roles');
+    $roles = getRegistryItem('roles');
     //$roles = $r->fetchAll();
 
-    $cache = Zend_Registry::get('cache');
+    $cache = getRegistryItem('cache');
 
     $this->_addRoles($roles);
     if (!($modules = $cache->load('modules'))) {

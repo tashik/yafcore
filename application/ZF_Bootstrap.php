@@ -62,9 +62,9 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     $this->bootstrap('Cache');
     if ('testing'==APPLICATION_ENV) {
       $config = new Zend_Config($this->getOptions());
-      Zend_Registry::set('config', $config);
+      setRegistryItem('config', $config);
     } else {
-      $config = Zend_Registry::get('config');
+      $config = getRegistryItem('config');
     }
     //$this->bootstrap('Logger');
     $this->_config = $config;
@@ -85,7 +85,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     $db->setFetchMode(Zend_Db::FETCH_ASSOC);
     Zend_Db_Table_Abstract::setDefaultAdapter($db);
     Zend_Db_Table_Abstract::setDefaultMetadataCache($this->_cache);
-    Zend_Registry::set('db', $db);
+    setRegistryItem('db', $db);
   }
 
   protected function _initSession() {
@@ -130,7 +130,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     }
     $logger->addPriority('DUMP', 9);
     $logger->addFilter(new Zend_Log_Filter_Priority(intval(getConfigValue('interface->debug->level', 9))));
-    Zend_Registry::set('logger', $logger);
+    setRegistryItem('logger', $logger);
   }
 
   protected function _initRegistryItems()
@@ -149,9 +149,9 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
         $config = new Zend_Config($this->getOptions());
         $this->_cache->save($config, 'config');
       }
-      Zend_Registry::set('config', $config);*/
+      setRegistryItem('config', $config);*/
 
-      $db = Zend_Registry::get('db');
+      $db = getRegistryItem('db');
 
     //} catch (Exception $e) {
       //die("Fatal error: ".$e->getMessage());
@@ -181,14 +181,14 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
             return false;
           }
           $warnings = false;
-          if (Zend_Registry::isRegistered('warnings')) {
-            $warnings = Zend_Registry::get('warnings');
+          if (isRegistered('warnings')) {
+            $warnings = getRegistryItem('warnings');
           }
           if (!$warnings) {
             $warnings = array();
           }
           $warnings[] = array('code'=>$code, 'message'=>$message, 'location'=>"$file:$line");
-          Zend_Registry::set('warnings', $warnings);
+          setRegistryItem('warnings', $warnings);
           return false;
         }
         throw new ErrorException($message, 0, $code, $file, $line);
@@ -296,7 +296,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
   protected function _initCache()
   {
     //fputs(STDERR, "_initCache\n");
-    $this->_cache = Zend_Registry::get('cache');
+    $this->_cache = getRegistryItem('cache');
     return $this->_cache;
   }
 
@@ -310,8 +310,8 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
     try {
       // убираем ресурс мемкеша из списка, т.к. под него нет плагинов
       $this->unregisterPluginResource('memcached');
-      if (Zend_Registry::isRegistered("shared_cache")) {
-        return Zend_Registry::get("shared_cache");
+      if (isRegistered("shared_cache")) {
+        return getRegistryItem("shared_cache");
       }
       if (extension_loaded('memcached')) {
         $backend = 'Libmemcached';
@@ -331,7 +331,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
         'lifetime' => null,
         //'cache_id_prefix' => $prefix,
         //'logging' => true,
-        //'logger' => Zend_Registry::get('logger'),
+        //'logger' => getRegistryItem('logger'),
       );
       $backendOptions  = array(
         'servers' => array($memcache),
@@ -340,7 +340,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
       if (!$cache) {
         return null;
       }
-      Zend_Registry::set("shared_cache", $cache);
+      setRegistryItem("shared_cache", $cache);
       return $cache;
     } catch (Exception $e) {
       //logException($e);
@@ -396,7 +396,7 @@ class ZF_Bootstrap extends Extended_Bootstrap_Abstract {
              'additionalParams'  => array('format' => 'direct'),
          ), $req);
 
-        Zend_Registry::set(Core_Keys::EXT_REQUEST_OBJECT, $extDirect);
+        setRegistryItem(Core_Keys::EXT_REQUEST_OBJECT, $extDirect);
         $extDirect->registerPlugins();
         Core_Debug::getGenerateTime('extRequest prepare end');
       } elseif (isset($_REQUEST['rpctype']) && $_REQUEST['rpctype']=='soap') {

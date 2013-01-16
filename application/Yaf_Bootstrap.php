@@ -148,17 +148,17 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
     Zend_Locale::setDefault('ru_RU.UTF-8');
   }
 
-  protected function _initDatabase() {
-    /* @var $db Zend_Db_Adapter_Abstract */
+  /*protected function _initDatabase() {
+
     $db = new Zend_Db_Adapter_Pdo_Pgsql($this->_config->resources->db);
 
     $db->setFetchMode(Zend_Db::FETCH_ASSOC);
     Zend_Db_Table_Abstract::setDefaultAdapter($db);
     Zend_Db_Table_Abstract::setDefaultMetadataCache($this->_cache);
     setRegistryItem('db', $db);
-  }
+  }*/
 
-  protected function _initSession() {
+  /*protected function _initSession() {
     if (!isset($_SERVER['REQUEST_METHOD'])) {
       return true;
     }
@@ -201,10 +201,6 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
     //fputs(STDERR, "_initView\n");
     Core_Debug::getGenerateTime('initView start');
 
-    // Определяем основной модуль
-    /*$main_module = getConfigValue('general->main_module', 'com');
-    $this->_main_module = $main_module;*/
-
     $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
     $viewRenderer->init();
     $view = $viewRenderer->view;
@@ -219,7 +215,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
       $view->headTitle($this->_config->general->site_title);
     }
     Core_Debug::getGenerateTime('initView end');
-  }
+  }*/
 
   protected function _initAutoload()
   {
@@ -228,14 +224,14 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
       return;
     }
 
-    $autoloader = Yaf_Loader::getInstance();
+    $autoloader = getAutoloaderInstance();
     /*$autoloader->setDefaultAutoloader(create_function('$class',
         "include str_replace('_', '/', \$class) . '.php';"));* /
     $autoloader->setDefaultAutoloader(array("My_NameScheme_Autoload", "classAutoloader"));*/
-    $autoloader->registerLocalNamespace('Core');
-    $autoloader->registerLocalNamespace('Queue');
-    $autoloader->registerLocalNamespace('DbTable');
-    $autoloader->registerLocalNamespace('Cli');
+    $autoloader->registerNamespace('Core');
+    $autoloader->registerNamespace('Queue');
+    $autoloader->registerNamespace('DbTable');
+    $autoloader->registerNamespace('Cli');
     //$autoloader->registerNamespace('Model');
     return $autoloader;
   }
@@ -273,7 +269,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
       $disabled_plugins[$k] = MyStrToLower($v);
     }
 
-    $dir = @dir(APPLICATION_PATH.'/../library/Core/Plugins/');
+    $dir = @dir(APPLICATION_PATH.'/library/Core/Plugins/');
     $this->_event_plugins = array();
     if ($dir) {
       while (false!==($entry=$dir->read())) {
@@ -324,7 +320,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
       setRegistryItem("shared_cache", $cache);
       return $cache;
     } catch (Exception $e) {
-      //logException($e);
+      logException($e);
     }
     return null;
   }
@@ -336,7 +332,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
     //Zend_Controller_Action_HelperBroker::addPrefix('Core_Controller_Action_Helper');
     if ( APPLICATION_ENV != 'testing' ) {
 
-      $response = new Zend_Controller_Response_Http;
+      /*$response = new Zend_Controller_Response_Http;
       $response->setHeader('Content-Type', 'text/html; charset=UTF-8', true);
       $dispatcher->setResponse($response);
 
@@ -366,7 +362,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
              'additionalParams'  => array('format' => 'direct'),
          ), $req);
 
-        Zend_Registry::set(Core_Keys::EXT_REQUEST_OBJECT, $extDirect);
+        setRegistryItem(Core_Keys::EXT_REQUEST_OBJECT, $extDirect);
         $extDirect->registerPlugins();
         Core_Debug::getGenerateTime('extRequest prepare end');
       } elseif (isset($_REQUEST['rpctype']) && $_REQUEST['rpctype']=='soap') {
@@ -390,7 +386,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
       }
       $auth = new Core_Controller_Plugin_Access(Zend_Auth::getInstance()->getIdentity());
       $fc->registerPlugin($auth, 0);
-      Core_Debug::getGenerateTime('initFC end (Before Dispatch)');
+      Core_Debug::getGenerateTime('initFC end (Before Dispatch)'); */
     }
   }
 
@@ -401,7 +397,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
     }
   }
 
-  protected function _initIDS() {
+  /*protected function _initIDS() {
     return;
     $input = file_get_contents('php://input');
     if ( isset($_REQUEST['rpctype']) && $_REQUEST['rpctype']=='direct' && !empty($input)) {
@@ -473,7 +469,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
         exit;
       }
     }
-  }
+  }*/
 
   protected function _checkIDS($str) {
     $score = 0;
@@ -499,8 +495,8 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
 
 	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
 		//Register a plugin
-		$objSamplePlugin = new SamplePlugin();
-		$dispatcher->registerPlugin($objSamplePlugin);
+		//$objSamplePlugin = new SamplePlugin();
+		//$dispatcher->registerPlugin($objSamplePlugin);
 	}
 
 	public function _initRoute(Yaf_Dispatcher $dispatcher) {
@@ -512,7 +508,7 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
 *
 * Allows to load extra settings per module, like routes etc.
 */
-    public function _initModules(Yaf_Dispatcher $dispatcher)
+    /*public function _initModules(Yaf_Dispatcher $dispatcher)
     {
         $app = $dispatcher->getApplication();
 
@@ -522,5 +518,5 @@ class Bootstrap extends Extended_Bootstrap_Abstract{
 
             require_once $app->getAppDirectory() . "/modules" . "/$module" . "/_init.php";
         }
-    }
+    }*/
 }

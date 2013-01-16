@@ -71,7 +71,7 @@ function db_string_to_date($str)
 
 function db_get_vocab($table, $id)
 {
-  $db=Zend_Registry::get('db');
+  $db=getRegistryItem('db');
   $result=$db->fetchRow('SELECT name FROM '.$table.' WHERE id = ?', array($id), Zend_Db::FETCH_ASSOC);
   if (count($result))
   {
@@ -93,7 +93,7 @@ class DbTransaction
     }
     else
     {
-      self::$db=Zend_Registry::get('db');
+      self::$db=getRegistryItem('db');
       self::$db->beginTransaction();
       self::$in_transaction=1;
     }
@@ -184,7 +184,7 @@ function ISOTimeSelect($column) {
  * @return Zend_Db_Select $select
  */
 function prepareWhereStatement($select, array $params, array $objects) {
-  $db = Zend_Registry::get('db');
+  $db = getRegistryItem('db');
   foreach ($params as $name=>$value) {
     if (''===$value) {
       continue;
@@ -279,7 +279,7 @@ function getPagerData($pager, $start=0, $limit=25, $truncate = true, $skip_count
  * @return Zend_Db_Adapter_Abstract
  */
 function getDbInstance() {
-  return Zend_Registry::get('db');
+  return getRegistryItem('db');
 }
 
 /**

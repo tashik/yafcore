@@ -16,11 +16,11 @@ class Core_Captcha
     if (!class_exists('Zend_Registry')) {
       return null;
     }
-    if (Zend_Registry::isRegistered('shared_cache')) {
-      return Zend_Registry::get('shared_cache');
+    if (isRegistered('shared_cache')) {
+      return getRegistryItem('shared_cache');
     }
-    if (Zend_Registry::isRegistered('cache')) {
-      return Zend_Registry::get('cache');
+    if (isRegistered('cache')) {
+      return getRegistryItem('cache');
     }
     return null;
   }

@@ -77,10 +77,10 @@ class Core_PageCache {
   static private function _getCache() {
     /* @var $cache Zend_Cache_Core */
     if (!self::$_cache) {
-      if (Zend_Registry::isRegistered('shared_cache')) {
-        self::$_cache = Zend_Registry::get('shared_cache');
+      if (isRegistered('shared_cache')) {
+        self::$_cache = getRegistryItem('shared_cache');
       } else {
-        self::$_cache = Zend_Registry::get('cache');
+        self::$_cache = getRegistryItem('cache');
       }
     }
     return self::$_cache;

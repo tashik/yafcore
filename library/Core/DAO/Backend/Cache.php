@@ -18,10 +18,10 @@ class Core_DAO_Backend_Cache extends Core_DAO_Backend_Abstract {
     if (isset($config['adapter'])) {
       $this->_handle = $config['adapter'];
     } else {
-      if (Zend_Registry::isRegistered('shared_cache')) {
-        $this->_handle = Zend_Registry::get('shared_cache');
-      } elseif (Zend_Registry::isRegistered('cache')) {
-        $this->_handle = Zend_Registry::get('cache');
+      if (isRegistered('shared_cache')) {
+        $this->_handle = getRegistryItem('shared_cache');
+      } elseif (isRegistered('cache')) {
+        $this->_handle = getRegistryItem('cache');
       }
     }
     if (!$this->_handle) {

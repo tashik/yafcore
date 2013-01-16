@@ -5,9 +5,9 @@ function Core_Crypto_Bootstrap()
   $cmd='/opt/cprocsp/bin/ia32/cryptcp';
   $cmd_csp='/opt/cprocsp/bin/ia32/csptestf';
   $key='79b21f5af20bc4978ada90204d475a4419cb3690d87e8cc20b9c483699aa512ac3c8af0a7b79ee27ca2f58a1830fefad714d4a2e8bf7e7af912f4b2466b3d9cd';
-  if (class_exists('Zend_Registry') && Zend_Registry::isRegistered('config'))
+  if (class_exists('Zend_Registry') && isRegistered('config'))
   {
-    $c = Zend_Registry::get('config');
+    $c = getRegistryItem('config');
     /*$config=array('crypto'=>array());
     if ( isset($c->crypto->cryptcp_command) )
       $config['crypto']['cryptcp_command']=$c->crypto->cryptcp_command;

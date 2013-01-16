@@ -55,7 +55,7 @@ function datePattern($format = 'sql')
 
 function getActiveRole()
 {
-  //return Zend_Registry::get('role');
+  //return getRegistryItem('role');
   $auth = Zend_Auth::getInstance();
   if(!$auth->hasIdentity())
     $auth_data=$auth->getIdentity();
@@ -124,7 +124,7 @@ function logout()
 {
   $identity = Zend_Auth::getInstance()->getIdentity();
   if ($identity) {
-    $cache = Zend_Registry::get('cache');
+    $cache = getRegistryItem('cache');
     if ($cache) {
       @$cache->remove('user_mandates_'.$identity->userid);
       @$cache->remove('user_'.$identity->userid);
@@ -145,7 +145,7 @@ function checkPrivileges($min_role=Model_User::USER_ROLE_ADMIN, $only_approved=t
 {
   if (Model_User::USER_ROLE_GUEST!=$min_role && $only_approved)
   {
-    $auth_data=Zend_Registry::get('auth_data');
+    $auth_data=getRegistryItem('auth_data');
     if ( !isset($auth_data['status']) || Model_User::STATUS_AUTHORIZED!=$auth_data['status'] )
     {
       $id=getActiveUser();
@@ -180,7 +180,7 @@ function initAuthentication($login=null, $password=null)
 {
   require_once 'Core/Acl.php';
   $auth=Core_Auth::getInstance();
-  /*$dbStore = new Core_AuthDbStorage(Zend_Registry::get('db'), 'etpsid', 'users', 'username', 21200);
+  /*$dbStore = new Core_AuthDbStorage(getRegistryItem('db'), 'etpsid', 'users', 'username', 21200);
   $auth->setStorage($dbStore);*/
 
   if (!$auth->hasIdentity())
@@ -218,22 +218,22 @@ function initAuthentication($login=null, $password=null)
           $authStorage->write(array('userid'=>$identity->id, 'id'=>$SessionId, 'status'=>$identity->status, 'role'=>$identity->role, 'companyId'=>$identity->company_id, 'type'=>$identity->type));
           $auth_data = $authStorage->read();
 
-          Zend_Registry::set('auth_data', $auth_data);
-          Zend_Registry::set('role', $identity->role);
+          setRegistryIte('auth_data', $auth_data);
+          setRegistryItem('role', $identity->role);
         } else {
-            Zend_Registry::set('role', Model_User::USER_ROLE_GUEST);
-            Zend_Registry::set('auth_data', array());
+            setRegistryItem('role', Model_User::USER_ROLE_GUEST);
+            setRegistryItem('auth_data', array());
         }
     }  else {
-        Zend_Registry::set('role', Model_User::USER_ROLE_GUEST);
-        Zend_Registry::set('auth_data', array());
+        setRegistryItem('role', Model_User::USER_ROLE_GUEST);
+        setRegistryItem('auth_data', array());
     }
   }
   else
   {
     $auth_data=$auth->getIdentity();
-    Zend_Registry::set('auth_data', $auth_data);
-    Zend_Registry::set('role', $auth_data['role']);
+    setRegistryItem('auth_data', $auth_data);
+    setRegistryItem('role', $auth_data['role']);
   }
   return $auth;
 }
@@ -251,10 +251,10 @@ function logStr($str, $dest=0, $debug_level=9)
   $raddr = isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:'?';
   $saddr = isset($_SERVER['SERVER_ADDR'])?$_SERVER['SERVER_ADDR']:'?';
   $str = "{$raddr} {$saddr} $str";
-  if ($dest || !class_exists('Zend_Registry') || !Zend_Registry::isRegistered('logger')) {
+  if ($dest || !class_exists('Zend_Registry') || !isRegistered('logger')) {
     error_log($str, $dest, $f);
   } else {
-    $logger = Zend_Registry::get('logger');
+    $logger = getRegistryItem('logger');
     $logger->log($str, $debug_level);
   }
 }
@@ -375,7 +375,7 @@ function checkUploadedFile($file, $original_name=false)
 
 function getStoragePath()
 {
-  $config = Zend_Registry::get('config');
+  $config = getRegistryItem('config');
   return isset($config->general->storage_path)
            ?$config->general->storage_path
            :APPLICATION_PATH."/../data";
@@ -395,7 +395,7 @@ function securityViolation($info)
 
 function getServerAddress()
 {
-  $config = Zend_Registry::get('config');
+  $config = getRegistryItem('config');
   if ( isset($config->general->etp->url)&&$config->general->etp->url )
   {
     $addr = $config->general->etp->url;
@@ -424,7 +424,7 @@ function getServerAddress()
 function redirect_to($url)
 {
   header("HTTP/1.0 302 Found");
-  $config = Zend_Registry::get('config');
+  $config = getRegistryItem('config');
   if (false===strpos($url, '://'))
   {
     $host  = $_SERVER['HTTP_HOST'];
@@ -502,10 +502,12 @@ function  getConfigValue($path, $default=null)
 {
   $path = explode('->', $path);
   $config = array();
-  if (class_exists('Zend_Registry'))
+  if (class_exists('Zend_Registry') || class_exists('Yaf_Registry'))
   {
-    $config = Zend_Registry::get('config');
-    $config = $config->toArray();
+    $config = getRegistryItem('config');
+    if(is_object($config)) {
+      $config = $config->toArray();
+    }
   } else
   {
     global $CONFIG;
@@ -611,7 +613,7 @@ function isWorkDay($ts)
 {
   global $work_days_map;
   if (null===$work_days_map) {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     $workdays = $db->fetchAll('SELECT date,is_workday FROM holidays', array(), Zend_Db::FETCH_ASSOC);
     $work_days_map=array();
     foreach ($workdays as $d) {
@@ -728,7 +730,7 @@ function updateResource($table, $data, $check_tables) {
     $data = array($data);
   }
   $updated = array();
-  $db = Zend_Registry::get('db');
+  $db = getRegistryItem('db');
   $t = new Zend_Db_Table($table);
   $cols = $t->info('cols');
   $cols = array_flip($cols);
@@ -786,7 +788,7 @@ function updateResource($table, $data, $check_tables) {
 }
 
 function deleteResources($table, $resources) {
-  $db = Zend_Registry::get('db');
+  $db = getRegistryItem('db');
   if (!is_array($resources)) {
     $resources = array($resources);
   }
@@ -997,7 +999,7 @@ function resetApplication() {
     logVar(DbTransaction::$transactions_trace, 'Warning: transaction is not closed!');
     DbTransaction::rollback();
   }
-  Zend_Registry::set('warnings', null);
+  setRegistryItem('warnings', null);
 }
 
 /**
@@ -1182,10 +1184,10 @@ function fetchUrl($url, $opts=array()) {
  * @return Zend_Cache_Core
  */
 function getCacheInstance($prefer_shared = false) {
-  if ($prefer_shared && Zend_Registry::isRegistered('shared_cache')) {
-    return Zend_Registry::get('shared_cache');
+  if ($prefer_shared && isRegistered('shared_cache')) {
+    return getRegistryItem('shared_cache');
   }
-  return Zend_Registry::get('cache');
+  return getRegistryItem('cache');
 }
 
 function convertArrayToModel(array $array) {
@@ -1210,7 +1212,7 @@ function getSystems() {
  * @return array|null
  */
 function getReferences($name = null) {
-  $cache = Zend_Registry::get('cache');
+  $cache = getRegistryItem('cache');
   $key   = 'aReferences';
   $result = $cache->load($key);
   if (!$result) {

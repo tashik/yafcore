@@ -17,7 +17,7 @@ function core_corrector_sum_sort_compare_reverse($a1, $a2) {
 
 class Core_Corrector {
   static function getSupplierOperations($id) {
-    $db = Zend_Registry::get('db');
+    $db = getRegistryItem('db');
     if (is_object($id))
     {
       $supplier = $id;
